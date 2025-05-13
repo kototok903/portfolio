@@ -37,7 +37,7 @@ export default function Projects() {
                     />
 
                     {/* Buttons */}
-                    <div className="flex flex-row items-center gap-x-2 gap-y-2 mt-3">
+                    <div className="flex flex-row flex-wrap items-center gap-x-2 gap-y-2 mt-3">
                       {/* Project link button */}
                       {project.link && (
                         <Link href={project.link} target="_blank">
