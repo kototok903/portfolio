@@ -1,11 +1,13 @@
 import { StaticImageData } from 'next/image'
 import cIcon from '@/public/svgs/c.svg'
+import cppIcon from '@/public/svgs/cpp.svg'
+import csharpIcon from '@/public/svgs/csharp.svg'
 import gitIcon from '@/public/svgs/git.svg'
 import githubIcon from '@/public/svgs/github.svg'
 import javaIcon from '@/public/svgs/java.svg'
 import jsIcon from '@/public/svgs/javascript.svg'
 import htmlIcon from '@/public/svgs/html.svg'
-import cssIcon from '@/public/svgs/css.svg'
+import cssIcon from '@/public/svgs/css-new.svg'
 import mysqlIcon from '@/public/svgs/mysql.svg'
 import nextjsIcon from '@/public/svgs/next-js.svg'
 import reactIcon from '@/public/svgs/react.svg'
@@ -14,6 +16,16 @@ import tsIcon from '@/public/svgs/typescript.svg'
 import tailwindIcon from '@/public/svgs/tailwind-css.svg'
 import pythonIcon from '@/public/svgs/python.svg'
 import expressIcon from '@/public/svgs/express-original.svg'
+import goIcon from '@/public/svgs/go.svg'
+import haskellIcon from '@/public/svgs/haskell.svg'
+import androidStudioIcon from '@/public/svgs/android-studio.svg'
+import dotnetIcon from '@/public/svgs/dotnet.svg'
+import microsoftIcon from '@/public/svgs/microsoft.svg'
+import webrtcIcon from '@/public/svgs/webrtc.svg'
+import websocketIcon from '@/public/svgs/websocket.svg'
+import stripeIcon from '@/public/svgs/stripe.svg'
+import springIcon from '@/public/svgs/spring.svg'
+import springBootIcon from '@/public/svgs/spring-boot.svg'
 
 export type TagData = {
   name: string
@@ -27,7 +39,11 @@ export const tagsData: { [tag: string]: TagData } = {
   },
   "cpp": {
     name: "C++",
-    icon: cIcon
+    icon: cppIcon
+  },
+  "csharp": {
+    name: "C#",
+    icon: csharpIcon
   },
   "git": {
     name: "Git",
@@ -43,6 +59,10 @@ export const tagsData: { [tag: string]: TagData } = {
   },
   "java": {
     name: "Java",
+    icon: javaIcon
+  },
+  "java-swing": {
+    name: "Java Swing",
     icon: javaIcon
   },
   "javascript": {
@@ -75,11 +95,15 @@ export const tagsData: { [tag: string]: TagData } = {
   },
   "go": {
     name: "Go",
-    icon: cIcon
+    icon: goIcon
   },
   "haskell": {
     name: "Haskell",
-    icon: cIcon
+    icon: haskellIcon
+  },
+  "code-world": {
+    name: "CodeWorld",
+    icon: haskellIcon
   },
   "express-js": {
     name: "Express.js",
@@ -87,11 +111,11 @@ export const tagsData: { [tag: string]: TagData } = {
   },
   "webrtc": {
     name: "WebRTC",
-    icon: cIcon
+    icon: webrtcIcon
   },
   "websocket": {
     name: "WebSocket",
-    icon: cIcon
+    icon: websocketIcon
   },
   "shadcn-ui": {
     name: "Shadcn/UI",
@@ -100,5 +124,29 @@ export const tagsData: { [tag: string]: TagData } = {
   "tailwind-css": {
     name: "Tailwind CSS",
     icon: tailwindIcon
+  },
+  "android-studio": {
+    name: "Android Studio",
+    icon: androidStudioIcon
+  },
+  "monaco-editor": {
+    name: "Monaco Editor",
+    icon: microsoftIcon
+  },
+  "dotnet-framework": {
+    name: ".NET Framework",
+    icon: dotnetIcon
+  },
+  "stripe": {
+    name: "Stripe",
+    icon: stripeIcon
+  },
+  "spring": {
+    name: "Spring",
+    icon: springIcon
+  },
+  "spring-boot": {
+    name: "Spring Boot",
+    icon: springBootIcon
   },
 }

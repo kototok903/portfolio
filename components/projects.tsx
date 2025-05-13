@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ProjectData, projectsData } from "@/lib/projects";
 import Link from "next/link";
 import Tags from "@/components/tags";
+import { OpenInNewWindowIcon } from "@radix-ui/react-icons";
 
 
 export default function Projects() {
@@ -17,19 +18,36 @@ export default function Projects() {
       <div className='relative'>
         <div className="flex flex-col mt-6">
           {projectsData.map((project: ProjectData, index: number) => (
-            <Card className='relative mb-24 overflow-hidden' key={index}>
+            <Card className='relative mb-12 overflow-hidden' key={index}>
               <div className='flex flex-col-reverse items-start gap-x-10 gap-y-4 md:flex-row md:items-center'>
                 <div className="md:max-w-[60%]">
+                  {/* Title */}
                   <CardHeader>
                     <CardTitle>{project.title}</CardTitle>
                   </CardHeader>
 
-                  <CardContent className="pr-4 mt-3">
-                    <p className='text-muted-foreground'>
+                  <CardContent className="mt-3">
+                    {/* Description */}
+                    {/* <p className='text-muted-foreground'>
                       {project.description}
-                    </p>
+                    </p> */}
+                    <p 
+                      className="text-muted-foreground" 
+                      dangerouslySetInnerHTML={{ __html: project.description }} 
+                    />
 
+                    {/* Buttons */}
                     <div className="flex flex-row items-center gap-x-2 gap-y-2 mt-3">
+                      {/* Project link button */}
+                      {project.link && (
+                        <Link href={project.link} target="_blank">
+                          <Button variant="secondary">
+                            <OpenInNewWindowIcon />
+                            {project.linkText || "Try it"}
+                          </Button>
+                        </Link>
+                      )}
+
                       {/* Github Repo button */}
                       {project.githubUrl && (
                         <Link href={project.githubUrl} target="_blank">
@@ -45,25 +63,13 @@ export default function Projects() {
                           </Button>
                         </Link>
                       )}
-
-                      {/* Project link button */}
-                      {project.link && (
-                        <Link href={project.link} target="_blank">
-                          <Button variant="secondary">
-                            Try it
-                          </Button>
-                        </Link>
-                      )}
                     </div>
 
+                    {/* Tags */}
                     {project.tags && (
                       <Tags tags={project.tags} className="mt-4" />
                     )}
                   </CardContent>
-
-                  {/* <CardFooter className="mt-3">
-                    
-                  </CardFooter> */}
                 </div>
 
                 {/* Normal screen image */}
@@ -71,7 +77,7 @@ export default function Projects() {
                   <Image 
                     src={project.image}
                     alt={`${project.title} project screenshot`}
-                    className="absolute hidden md:block top-1/2 -translate-y-1/2 left-[60%] h-[80%] w-auto rounded-lg"
+                    className="absolute hidden md:block top-1/2 -translate-y-1/2 left-[60%] h-[80%] w-auto max-h-64 rounded-lg"
                   />
                 )}
 
