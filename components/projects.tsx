@@ -1,13 +1,17 @@
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { ProjectData, projectsData } from "@/lib/projects";
 import Link from "next/link";
+import Tags from "@/components/tags";
 
 
 export default function Projects() {
   return (
-    <section className='relative isolate max-w-3xl m-auto pb-24'>
+    <section 
+      id='projects' 
+      className='relative isolate max-w-3xl m-auto pb-24 scroll-mt-32'
+    >
       <h1 className='title'>Projects</h1>
       
       <div className='relative'>
@@ -20,7 +24,7 @@ export default function Projects() {
                     <CardTitle>{project.title}</CardTitle>
                   </CardHeader>
 
-                  <CardContent className="pr-4">
+                  <CardContent className="pr-4 mt-3">
                     <p className='text-muted-foreground'>
                       {project.description}
                     </p>
@@ -51,45 +55,30 @@ export default function Projects() {
                         </Link>
                       )}
                     </div>
+
+                    {project.tags && (
+                      <Tags tags={project.tags} className="mt-4" />
+                    )}
                   </CardContent>
 
-                  <CardFooter className="mt-3">
-                    <p>udsfhjafavj</p>
-                  </CardFooter>
+                  {/* <CardFooter className="mt-3">
+                    
+                  </CardFooter> */}
                 </div>
 
                 {/* Normal screen image */}
-                {project.imageUrl && (
-                  // <div className="relative w-[40%] overflow-visible">
-                  //   <Image 
-                  //     src={project.imageUrl}
-                  //     alt={`${project.title} project screenshot`}
-                  //     className="absolute w-100 -right-40 aspect-auto rounded-lg" 
-                  //   />
-                  // </div>
-                  
-                  // <div className="relative w-[20%] overflow-visible">
-                  //   <Image 
-                  //     src={project.imageUrl}
-                  //     alt={`${project.title} project screenshot`}
-                  //     className="w-full h-auto max-w-none translate-x-1/2 rounded-lg"
-                  //     width={1000}
-                  //     height={400}
-                  //   />
-                  // </div>
-
+                {project.image && (
                   <Image 
-                    src={project.imageUrl}
+                    src={project.image}
                     alt={`${project.title} project screenshot`}
                     className="absolute hidden md:block top-1/2 -translate-y-1/2 left-[60%] h-[80%] w-auto rounded-lg"
                   />
-
                 )}
 
                 {/* Small screen image */}
-                {project.imageUrl && (
+                {project.image && (
                   <Image 
-                    src={project.imageUrl}
+                    src={project.image}
                     alt={`${project.title} project screenshot`}
                     className="md:hidden mx-auto w-[80%]"
                   />

@@ -5,7 +5,7 @@ export type ProjectData = {
   title: string
   description: string
   tags?: string[]
-  imageUrl?: StaticImageData
+  image?: StaticImageData
   githubUrl?: string
   link?: string
 }
@@ -14,7 +14,7 @@ export const projectsData: ProjectData[] = [
   {
     title: "Codegram",
     description:
-      "All-in-one schedule management solution. Automatically schedule your week with AI using preferences, event, and task data. Create group calendars to automatically find availability.",
+      "Codegram is an online tutoring platform that is capable of matching students in need of programming assistance with experts in the related field. They share a synchronized code editor with webcam, audio, and programming language support functionality to enhance the virtual tutoring experience.",
     tags: [
       "react",
       "typescript",
@@ -25,7 +25,7 @@ export const projectsData: ProjectData[] = [
       "express-js",
       "monaco-editor",
     ],
-    imageUrl: codegram,
+    image: codegram,
     githubUrl: "https://github.com/Bardemic/Codegram",
     link: undefined,
   },

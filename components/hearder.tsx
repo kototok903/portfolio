@@ -7,19 +7,19 @@ export default function Header() {
       <nav className='container flex max-w-3xl items-center justify-between'>
         <div>
           <Link href='/' className='text-2xl font-bold'>
-            
+            {/* No Title */}
           </Link>
         </div>
 
         <ul className='flex items-center gap-6 text-md text-muted-foreground sm:gap-10'>
           <li className='transition-colors hover:text-foreground'>
-            <Link href='/posts'>About</Link>
+            <Link href='#intro'>About</Link>
           </li>
           <li className='transition-colors hover:text-foreground'>
-            <Link href='/projects'>Projects</Link>
+            <Link href='#projects'>Projects</Link>
           </li>
           <li className='transition-colors hover:text-foreground'>
-            <Link href='/contact'>Contact</Link>
+            <Link href='#contact-form'>Contact</Link>
           </li>
         </ul>
 
