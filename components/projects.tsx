@@ -86,7 +86,7 @@ export default function Projects() {
                   <Image 
                     src={project.image}
                     alt={`${project.title} project screenshot`}
-                    className="md:hidden mx-auto w-[80%]"
+                    className="md:hidden mx-auto w-[80%] pb-2 rounded-lg"
                   />
                 )}
               </div>
