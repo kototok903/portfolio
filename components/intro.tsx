@@ -7,7 +7,7 @@ export default function Intro() {
   return (
     <section 
       id='intro' 
-      className='flex flex-col-reverse items-start gap-x-10 gap-y-4 pb-24 md:flex-row md:items-center scroll-mt-32'
+      className='flex flex-col-reverse items-start gap-x-10 gap-y-4 pb-24 md:flex-row md:items-center max-w-4xl scroll-mt-32'
     >
       <div className='mt-2 flex-1 md:mt-0'>
         <h1 className='title'>Hey, I&#39;m Stas.</h1>
@@ -17,7 +17,9 @@ export default function Intro() {
           others.
         </p>
         <div className="flex flex-row items-center gap-x-2 gap-y-2 mt-8">
-          <Button>Resume</Button>
+          <Link href="/resume">
+            <Button>Resume</Button>
+          </Link>
           {/* Github button */}
           <Link href="https://github.com/kototok903" target="_blank">
             <Button variant="secondary" size="icon">

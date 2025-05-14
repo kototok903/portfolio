@@ -20,20 +20,20 @@ export default function ThemeTogle() {
 
   return (
     <Button
-			className='text-muted-foreground hover:text-foreground'
-			size='sm'
-			variant='ghost'
-			onClick={() => {
-				setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
-			}}
-		>
-			{resolvedTheme === 'dark' ? (
-				<MoonIcon className='size-4' />
-			) : (
-				<SunIcon className='size-4' />
-			)}
+		className='text-muted-foreground hover:text-foreground'
+		size='sm'
+		variant='ghost'
+		onClick={() => {
+			setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
+		}}
+	>
+		{resolvedTheme === 'dark' ? (
+			<MoonIcon className='size-4' />
+		) : (
+			<SunIcon className='size-4' />
+		)}
 
-			<span className="sr-only">Toggle theme</span>
-		</Button>
+		<span className="sr-only">Toggle theme</span>
+	</Button>
   )
 }
