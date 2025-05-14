@@ -50,7 +50,7 @@ export default function Intro() {
         <Image
           className='flex-1 rounded-lg'
           src={authorImage}
-          alt='Hamed Bahram'
+          alt='Stas Bronevskiy'
           width={175}
           height={175}
           priority
