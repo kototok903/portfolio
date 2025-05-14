@@ -58,6 +58,7 @@ export default function ContactForm() {
             <div>
               <Input
                 id='name'
+                className='bg-secondary'
                 type='text'
                 placeholder='Name'
                 autoComplete='given-name'
@@ -74,8 +75,9 @@ export default function ContactForm() {
             {/* Email */}
             <div>
               <Input
-                type='email'
                 id='email'
+                className='bg-secondary'
+                type='email'
                 autoComplete='email'
                 placeholder='Email'
                 {...register('email')}
@@ -91,6 +93,7 @@ export default function ContactForm() {
             {/* Message */}
             <div className='sm:col-span-2'>
               <Textarea
+                className='bg-secondary'
                 rows={4}
                 placeholder='Message'
                 {...register('message')}
