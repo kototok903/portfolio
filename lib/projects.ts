@@ -42,6 +42,7 @@ export const projectsData: ProjectData[] = [
       "Closetics is a unique Android app that blends clothes wearing statistics with social media. Designed for fashion enthusiasts, it helps you track your clothing habits, discover outfit trends, and share your style with a community of like-minded users.",
     tags: [
       "java",
+      "android",
       "android-studio",
       "spring-boot",
       "mysql",

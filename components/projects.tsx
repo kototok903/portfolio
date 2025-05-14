@@ -11,14 +11,14 @@ export default function Projects() {
   return (
     <section 
       id='projects' 
-      className='relative isolate max-w-3xl m-auto pb-24 scroll-mt-32'
+      className='relative isolate max-w-3xl m-auto pb-32 scroll-mt-32'
     >
       <h1 className='title'>Projects</h1>
       
       <div className='relative'>
-        <div className="flex flex-col mt-6">
+        <div className="flex flex-col gap-12 mt-8">
           {projectsData.map((project: ProjectData, index: number) => (
-            <Card className='relative mb-12 overflow-hidden' key={index}>
+            <Card className='relative overflow-hidden' key={index}>
               <div className='flex flex-col-reverse items-start gap-x-10 gap-y-4 md:flex-row md:items-center'>
                 <div className="md:max-w-[60%]">
                   {/* Title */}

@@ -18,6 +18,7 @@ import pythonIcon from '@/public/svgs/python.svg'
 import expressIcon from '@/public/svgs/express-original.svg'
 import goIcon from '@/public/svgs/go.svg'
 import haskellIcon from '@/public/svgs/haskell.svg'
+import androidIcon from '@/public/svgs/android.svg'
 import androidStudioIcon from '@/public/svgs/android-studio.svg'
 import dotnetIcon from '@/public/svgs/dotnet.svg'
 import microsoftIcon from '@/public/svgs/microsoft.svg'
@@ -124,6 +125,10 @@ export const tagsData: { [tag: string]: TagData } = {
   "tailwind-css": {
     name: "Tailwind CSS",
     icon: tailwindIcon
+  },
+  "android": {
+    name: "Android",
+    icon: androidIcon
   },
   "android-studio": {
     name: "Android Studio",
