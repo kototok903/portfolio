@@ -7,7 +7,7 @@ export default function Intro() {
   return (
     <section 
       id='intro' 
-      className='flex flex-col-reverse items-start gap-x-10 gap-y-4 pb-32 md:flex-row md:items-center max-w-4xl scroll-mt-32'
+      className='flex flex-col-reverse items-start gap-x-10 gap-y-4 pb-28 md:flex-row md:items-center max-w-4xl mx-auto scroll-mt-32'
     >
       <div className='mt-2 flex-1 md:mt-0'>
         <h1 className='title'>Hey, I&#39;m Stas.</h1>
