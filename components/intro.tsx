@@ -48,7 +48,7 @@ export default function Intro() {
       
       <div className='relative'>
         <Image
-          className='flex-1 rounded-lg'
+          className='flex-1 rounded-lg shadow-sm'
           src={authorImage}
           alt='Stas Bronevskiy'
           width={175}

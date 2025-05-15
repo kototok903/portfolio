@@ -5,8 +5,8 @@ import { Button } from './ui/button';
 
 export default function Header() {
   return (
-    <header className='fixed inset-x-0 top-0 z-50 bg-background/75 backdrop-blur-sm'>
-      <nav className='container flex max-w-3xl items-center justify-between'>
+    <header className='fixed inset-x-0 top-0 z-50'>
+      <nav className='flex max-w-4xl items-center justify-between p-3 md:mt-6 mx-auto bg-background/75 backdrop-blur-sm md:rounded-lg shadow-lg'>
         <div>
           <Link href='/' className='text-2xl font-bold'>
             {/* Back button */}
@@ -15,7 +15,7 @@ export default function Header() {
           </Link>
         </div>
 
-        <ul className='flex items-center gap-6 text-md sm:gap-10'>
+        <ul className='flex items-center flex-wrap gap-6 text-md sm:gap-10'>
           <li className='transition-colors'>
             <Link href='/#intro'>
               <Button className='text-muted-foreground hover:text-foreground text-md' variant='ghost'>About</Button>
@@ -24,6 +24,11 @@ export default function Header() {
           <li className='transition-colors'>
             <Link href='/#projects'>
               <Button className='text-muted-foreground hover:text-foreground text-md' variant='ghost'>Projects</Button>
+            </Link>
+          </li>
+          <li className='transition-colors'>
+            <Link href='/#skills'>
+              <Button className='text-muted-foreground hover:text-foreground text-md' variant='ghost'>Skills</Button>
             </Link>
           </li>
           <li className='transition-colors'>
