@@ -18,7 +18,7 @@ export default function Projects() {
       <div className='relative'>
         <div className="flex flex-col gap-12 mt-8">
           {projectsData.map((project: ProjectData, index: number) => (
-            <Card className='relative overflow-hidden' key={index}>
+            <Card className='relative overflow-hidden bg-[linear-gradient(0.375turn,var(--color-background),var(--color-card),var(--color-card))]' key={index}>
               <div className='flex flex-col-reverse items-start gap-x-10 gap-y-4 md:flex-row md:items-center'>
                 <div className="md:max-w-[60%]">
                   {/* Title */}

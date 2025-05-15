@@ -8,7 +8,7 @@ export default function TagBadge({ tag }: { tag: string }) {
   const { name, icon } = tagsData[tag]
 
   return (
-    <Badge variant="outline">
+    <Badge variant="outline" className="bg-card/50">
       {icon && (
         <Image src={icon} alt={`${name} icon`} width={20} height={20} />
       )}

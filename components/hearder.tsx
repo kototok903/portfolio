@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import ThemeToggle from '@/components/theme-toggle';
 import BackButton from './back-button';
+import { Button } from './ui/button';
 
 export default function Header() {
   return (
@@ -14,15 +15,21 @@ export default function Header() {
           </Link>
         </div>
 
-        <ul className='flex items-center gap-6 text-md text-muted-foreground sm:gap-10'>
-          <li className='transition-colors hover:text-foreground'>
-            <Link href='/#intro'>About</Link>
+        <ul className='flex items-center gap-6 text-md sm:gap-10'>
+          <li className='transition-colors'>
+            <Link href='/#intro'>
+              <Button className='text-muted-foreground hover:text-foreground text-md' variant='ghost'>About</Button>
+            </Link>
           </li>
-          <li className='transition-colors hover:text-foreground'>
-            <Link href='/#projects'>Projects</Link>
+          <li className='transition-colors'>
+            <Link href='/#projects'>
+              <Button className='text-muted-foreground hover:text-foreground text-md' variant='ghost'>Projects</Button>
+            </Link>
           </li>
-          <li className='transition-colors hover:text-foreground'>
-            <Link href='/#contact-form'>Contact</Link>
+          <li className='transition-colors'>
+            <Link href='/#contact-form'>
+              <Button className='text-muted-foreground hover:text-foreground text-md' variant='ghost'>Contact</Button>
+            </Link>
           </li>
         </ul>
 

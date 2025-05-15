@@ -38,34 +38,12 @@ export default function RootLayout({
             gradientBackgroundStart="var(--color-background)"
             gradientBackgroundEnd="var(--color-secondary)"
             firstColor="var(--color-background)"
-            // secondColor="var(--color-background)"
-            // thirdColor="var(--color-background)"
-            // fourthColor="var(--color-background)"
-            // fifthColor="var(--color-background)"
-            // pointerColor="var(--color-background)"
-            
-            // secondColor="223, 94, 58"
-            // thirdColor="223, 94, 58"
-            // fourthColor="223, 94, 58"
-            // fifthColor="223, 94, 58"
-            // pointerColor="223 94 58"
-
-            // firstColor="transparent"
-            // secondColor="transparent"
-            // thirdColor="transparent"
-            // fourthColor="transparent"
-            // fifthColor="transparent"
-            // pointerColor="transparent"
-
             // firstColor="var(--color-primary)"
             // secondColor="var(--color-primary)"
             thirdColor="var(--color-primary)"
             fourthColor="var(--color-primary)"
             // fifthColor="var(--color-primary)"
             pointerColor="var(--color-primary)"
-
-            // interactive={true}
-            // blendingValue="difference"
           />
         </div>
 
