@@ -18,11 +18,11 @@ export default function Intro() {
         </p>
         <div className="flex flex-row items-center gap-x-2 gap-y-2 mt-8">
           <Link href="/resume">
-            <Button>Resume</Button>
+            <Button className="animate-button">Resume</Button>
           </Link>
           {/* Github button */}
           <Link href="https://github.com/kototok903" target="_blank">
-            <Button variant="secondary" size="icon">
+            <Button variant="secondary" size="icon" className="animate-button">
               <svg fill='currentColor' viewBox='0 0 24 24'>
                 <path
                   fillRule='evenodd'
@@ -34,7 +34,7 @@ export default function Intro() {
           </Link>
           {/* LinkedIn button */}
           <Link href="https://www.linkedin.com/in/sbronevskiy/" target="_blank">
-            <Button variant='secondary' size='icon'>
+            <Button variant='secondary' size='icon' className="animate-button">
               <svg fill='currentColor' viewBox='0 0 448 512'>
                 <path
                   fill='currentColor'

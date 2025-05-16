@@ -162,6 +162,10 @@
   .title {
     @apply text-3xl font-bold decoration-border/75 decoration-2 underline-offset-8;
   }
+
+  .animate-button {
+    @apply transform transition-transform duration-150 ease-in-out hover:scale-105 active:scale-110;
+  }
 }
 
 .container {

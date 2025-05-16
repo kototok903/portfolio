@@ -18,7 +18,10 @@ export default function Projects() {
       <div className='relative'>
         <div className="flex flex-col gap-12 mt-8">
           {projectsData.map((project: ProjectData, index: number) => (
-            <Card className='relative overflow-hidden bg-[linear-gradient(0.375turn,var(--color-background),var(--color-card),var(--color-card))]' key={index}>
+            <Card 
+              className='relative group overflow-hidden bg-[linear-gradient(0.375turn,var(--color-background),var(--color-card),var(--color-card))] transform transition-transform duration-150 delay-0 ease-in-out hover:scale-103' 
+              key={index}
+            >
               <div className='flex flex-col-reverse items-start gap-x-10 gap-y-4 md:flex-row md:items-center'>
                 <div className="md:max-w-[60%]">
                   {/* Title */}
@@ -41,7 +44,7 @@ export default function Projects() {
                       {/* Project link button */}
                       {project.link && (
                         <Link href={project.link} target="_blank">
-                          <Button variant="secondary">
+                          <Button variant="secondary" className="animate-button">
                             <OpenInNewWindowIcon />
                             {project.linkText || "Try it"}
                           </Button>
@@ -51,7 +54,7 @@ export default function Projects() {
                       {/* Github Repo button */}
                       {project.githubUrl && (
                         <Link href={project.githubUrl} target="_blank">
-                          <Button variant="secondary">
+                          <Button variant="secondary" className="animate-button">
                             <svg fill='currentColor' viewBox='0 0 24 24'>
                               <path
                                 fillRule='evenodd'
@@ -77,7 +80,7 @@ export default function Projects() {
                   <Image 
                     src={project.image}
                     alt={`${project.title} project screenshot`}
-                    className="absolute hidden md:block top-1/2 -translate-y-1/2 left-[60%] h-[80%] w-auto max-h-64 rounded-lg"
+                    className="absolute hidden md:block top-1/2 -translate-y-1/2 left-[65%] transition-all duration-150 delay-0 ease-in-out group-hover:left-[60%] h-[80%] w-auto max-h-64 rounded-lg"
                   />
                 )}
 

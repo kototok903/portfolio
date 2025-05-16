@@ -110,7 +110,7 @@ export default function ContactForm() {
             <Button
               type='submit'
               disabled={isSubmitting}
-              className='w-full disabled:opacity-50'
+              className='w-full disabled:opacity-50 animate-button'
             >
               {isSubmitting ? 'Submitting...' : 'Submit'}
             </Button>
