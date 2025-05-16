@@ -6,7 +6,7 @@ import { Button } from './ui/button';
 export default function Header() {
   return (
     <header className='fixed inset-x-0 top-0 z-50 sm:px-3'>
-      <nav className='flex max-w-4xl items-center justify-between px-3 sm:py-3 py-5 sm:mt-6 mx-auto bg-background/75 backdrop-blur-sm sm:rounded-lg shadow-lg'>
+      <nav className='flex max-w-4xl items-center justify-between p-3 sm:mt-6 mx-auto bg-background/75 backdrop-blur-sm sm:rounded-lg shadow-lg'>
         <div>
           <Link href='/' className='text-2xl font-bold'>
             {/* Back button */}

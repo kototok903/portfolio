@@ -4,7 +4,7 @@ import Tags from '@/components/tags'
 const mySkills = [
   "c", "cpp", "java", "csharp", "python", "go", "haskell", "html", "css", "javascript", "typescript",
   "react", "next-js", "android", "dotnet-framework", "spring-boot", "express-js",
-  "tailwind-css", "shadcn-ui", "mysql", "websocket", "android-studio", "webrtc", "stripe", "monaco-editor"
+  "git", "github", "tailwind-css", "shadcn-ui", "mysql", "websocket", "android-studio", "webrtc", "stripe", "monaco-editor"
 ]
 
 export default function Skills() {
