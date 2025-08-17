@@ -82,8 +82,10 @@ export const BackgroundGradientAnimation = ({
   };
 
   const [isSafari, setIsSafari] = useState(false);
+  const [isFirefox, setIsFirefox] = useState(false);
   useEffect(() => {
     setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent));
+    setIsFirefox(/firefox/i.test(navigator.userAgent));
   }, []);
 
   return (
@@ -109,14 +111,24 @@ export const BackgroundGradientAnimation = ({
             />
             <feBlend in="SourceGraphic" in2="goo" />
           </filter>
+          <filter id="blurFirefox">
+            <feGaussianBlur
+              in="SourceGraphic"
+              stdDeviation="8"
+              result="blur"
+            />
+          </filter>
         </defs>
       </svg>
       <div className={cn("", className)}>{children}</div>
       <div
         className={cn(
-          "gradients-container h-full w-full blur-lg",
-          isSafari ? "blur-2xl" : "[filter:url(#blurMe)_blur(40px)]"
+          "gradients-container h-full w-full",
+          isSafari ? "blur-2xl" : 
+          isFirefox ? "blur-xl" : 
+          "blur-lg [filter:url(#blurMe)_blur(40px)]"
         )}
+        style={isFirefox ? { filter: 'blur(40px)', willChange: 'transform' } : undefined}
       >
         <div
           className={cn(
