@@ -7,7 +7,9 @@ import Tags from "@/components/tags";
 import { OpenInNewWindowIcon } from "@radix-ui/react-icons";
 
 
-export default function Projects() {
+export default function Projects({ count }: { count?: number }) {
+  const projects = count ? projectsData.slice(0, count) : projectsData;
+
   return (
     <section 
       id='projects' 
@@ -17,7 +19,7 @@ export default function Projects() {
       
       <div className='relative'>
         <div className="flex flex-col gap-12 mt-8">
-          {projectsData.map((project: ProjectData, index: number) => (
+          {projects.map((project: ProjectData, index: number) => (
             <Card 
               className='relative group overflow-hidden bg-[linear-gradient(0.375turn,var(--color-background),var(--color-card),var(--color-card))] transform transition-transform duration-150 delay-0 ease-in-out hover:scale-103' 
               key={index}
@@ -96,6 +98,16 @@ export default function Projects() {
             </Card>
           ))}
         </div>
+
+        {count && projectsData.length > count && (
+          <div className="flex justify-center mt-12">
+            <Link href="/projects">
+              <Button variant="outline" size="lg" className="animate-button">
+                See all projects
+              </Button>
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   )
