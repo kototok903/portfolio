@@ -90,7 +90,7 @@ export const projectsData: ProjectData[] = [
     ],
     image: sokobanImg,
     githubUrl: "https://github.com/kototok903/sokoban",
-    link: "https://code.world/run.html?mode=haskell&dhash=DlrZTBCzPf5fFB_FDuBgLXQ",
+    link: "https://code.world/run.html?mode=haskell&dhash=DLmyERHj_RJnjXTqd1Ga35A",
     linkText: "Play in browser",
   },
 ]
