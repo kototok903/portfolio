@@ -12,12 +12,14 @@ import {
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
 import { navItems, NavItem } from '@/lib/data';
-import { smoothScrollTo } from '@/lib/utils';
+import { cn, smoothScrollTo } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
 import { ArrowDownIcon, ChevronDownIcon } from 'lucide-react';
+import { useActiveSection } from '@/hooks/use-active-section';
 
 export default function Header() {
   const pathname = usePathname();
+  const activeId = useActiveSection();
 
   return (
     <header className='fixed inset-x-0 top-0 z-50 sm:px-3'>
@@ -32,7 +34,7 @@ export default function Header() {
           {navItems.map((item) => (
             <li key={item.id}>
               {item.subItems ? (
-                <NavDropdown item={item} />
+                <NavDropdown item={item} active={activeId === item.id} />
               ) : (
                 <Link
                   href={item.href || `/#${item.id}`}
@@ -40,7 +42,15 @@ export default function Header() {
                     if (pathname === '/') smoothScrollTo({ e, id: item.id });
                   }}
                 >
-                  <Button className='text-muted-foreground text-base' variant='ghost'>{item.name}</Button>
+                  <Button
+                    className={cn(
+                      'text-muted-foreground text-base transition-colors duration-300',
+                      activeId === item.id ? 'bg-accent' : '',
+                    )}
+                    variant='ghost'
+                  >
+                    {item.name}
+                  </Button>
                 </Link>
               )}
             </li>
@@ -57,16 +67,23 @@ export default function Header() {
 
 type NavDropdownProps = {
   item: NavItem;
+  active?: boolean;
 }
 
-function NavDropdown({ item }: NavDropdownProps) {
+function NavDropdown({ item, active }: NavDropdownProps) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>
-        <Button className='text-muted-foreground text-base gap-2' variant='ghost'>
+        <Button
+          className={cn(
+            'text-muted-foreground text-base gap-2 transition-colors duration-300',
+            active ? 'bg-accent' : '',
+          )}
+          variant='ghost'
+        >
           {item.name}
           <ChevronDownIcon />
         </Button>

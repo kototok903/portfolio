@@ -24,7 +24,7 @@ export default function ThemeTogle() {
 
   return (
     <Button
-		className='text-muted-foreground hover:text-foreground'
+		className='text-muted-foreground'
 		size='sm'
 		variant='ghost'
 		onClick={() => {
