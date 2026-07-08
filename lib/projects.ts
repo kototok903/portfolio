@@ -4,6 +4,7 @@ import closeticsImg from '@/public/images/projects/closetics-screenshot-combo2.p
 import realSortImg from '@/public/images/projects/real-sort-screenshot.png'
 import simpleEditImg from '@/public/images/projects/simple-edit-screenshot.png'
 import sokobanImg from '@/public/images/projects/sokoban-screenshot.png'
+import sortForgeImg from '@/public/images/projects/sortforge-screenshot-flipped.png'
 
 export type ProjectData = {
   title: string
@@ -92,5 +93,23 @@ export const projectsData: ProjectData[] = [
     githubUrl: "https://github.com/kototok903/sokoban",
     link: "https://code.world/run.html?mode=haskell&dhash=DLmyERHj_RJnjXTqd1Ga35A",
     linkText: "Play in browser",
+  },
+  {
+    title: "SortForge",
+    description:
+      "SortForge is an interactive sorting algorithm visualizer featuring 20+ algorithms, fast forward and rewind, and sound synthesis. Rust engine in WebAssembly emits events, and the React frontend handles timing and animation. Live event generation is available to simulate large arrays.",
+    tags: [
+      "rust",
+      "webassembly",
+      "react",
+      "typescript",
+      "vite",
+      "tailwind-css",
+      "canvas",
+    ],
+    image: sortForgeImg,
+    githubUrl: "https://github.com/kototok903/sort-forge",
+    link: "https://sort-forge.vercel.app",
+    linkText: "Try it",
   },
 ]
