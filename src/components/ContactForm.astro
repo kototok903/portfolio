@@ -1,6 +1,9 @@
 ---
 import { actions } from "astro:actions"
-import Button from "@/components/ui/Button.astro"
+import { Button } from "@/components/ui/button"
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 ---
 
 <section id="contact-form" class="relative isolate m-auto max-w-3xl scroll-mt-32">
@@ -14,47 +17,46 @@ import Button from "@/components/ui/Button.astro"
       </label>
     </div>
 
-    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-      <label>
-        <span class="sr-only">Name</span>
-        <input
+    <FieldGroup className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <Field>
+        <FieldLabel htmlFor="name" className="sr-only">Name</FieldLabel>
+        <Input
           id="name"
           name="name"
-          class="flex h-9 w-full min-w-0 rounded-md border border-input bg-input/90 px-3 py-1 text-base shadow-xs outline-none transition-[color,box-shadow] placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           type="text"
           placeholder="Name"
-          autocomplete="given-name"
-          minlength="2"
+          autoComplete="given-name"
+          minLength={2}
           required
         />
-      </label>
+      </Field>
 
-      <label>
-        <span class="sr-only">Email</span>
-        <input
+      <Field>
+        <FieldLabel htmlFor="email" className="sr-only">Email</FieldLabel>
+        <Input
           id="email"
           name="email"
-          class="flex h-9 w-full min-w-0 rounded-md border border-input bg-input/90 px-3 py-1 text-base shadow-xs outline-none transition-[color,box-shadow] placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           type="email"
-          autocomplete="email"
+          autoComplete="email"
           placeholder="Email"
           required
         />
-      </label>
+      </Field>
 
-      <label class="sm:col-span-2">
-        <span class="sr-only">Message</span>
-        <textarea
+      <Field className="sm:col-span-2">
+        <FieldLabel htmlFor="message" className="sr-only">Message</FieldLabel>
+        <Textarea
+          id="message"
           name="message"
-          class="field-sizing-content min-h-16 w-full rounded-md border border-input bg-input/90 px-3 py-2 text-base shadow-xs outline-none transition-[color,box-shadow] placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-          rows="4"
+          rows={4}
           placeholder="Message"
-          required></textarea>
-      </label>
-    </div>
+          required
+        />
+      </Field>
+    </FieldGroup>
 
     <div class="m-auto mt-6 max-w-xl">
-      <Button type="submit" class="w-full animate-button disabled:opacity-50" data-contact-submit>
+      <Button type="submit" className="w-full" data-contact-submit>
         Submit
       </Button>
     </div>

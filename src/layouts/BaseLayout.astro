@@ -1,5 +1,5 @@
 ---
-import Header from "@/components/Header.astro"
+import Header from "@/components/Header"
 import Footer from "@/components/Footer.astro"
 import "@/styles/global.css"
 
@@ -20,21 +20,29 @@ const {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#f4f4f4" />
+    <meta name="theme-color" content="#ebebeb" />
     <link rel="icon" href="/favicon.ico" />
     <title>{title}</title>
     <script is:inline>
       (() => {
+        const themeColors = {
+          light: "#ebebeb",
+          dark: "#1c2433",
+        }
         const stored = localStorage.getItem("theme")
         const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches
-        if (stored === "dark" || (!stored && systemDark)) {
+        const theme = stored === "dark" || (!stored && systemDark) ? "dark" : "light"
+        const themeColor = document.querySelector('meta[name="theme-color"]')
+
+        if (theme === "dark") {
           document.documentElement.classList.add("dark")
         }
+        themeColor?.setAttribute("content", themeColors[theme])
       })()
     </script>
   </head>
   <body class="flex min-h-screen flex-col font-sans antialiased">
-    <Header pathname={Astro.url.pathname} />
+    <Header pathname={Astro.url.pathname} client:load />
     <main class="grow">
       <slot />
     </main>

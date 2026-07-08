@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro"
-import Button from "@/components/ui/Button.astro"
+import { LinkButton } from "@/components/LinkButton"
 
 const resumePreviewUrl = "https://drive.google.com/file/d/16xGqgVDR2kOtHW93LB6xWMO1aRzlvRjz/preview"
 const resumeDownloadUrl =
@@ -13,9 +13,9 @@ const resumeDownloadUrl =
       <h1 class="title mb-4">My resume</h1>
 
       <div class="mb-4">
-        <Button href={resumeDownloadUrl} target="_blank" rel="noopener noreferrer">
+        <LinkButton href={resumeDownloadUrl} target="_blank" rel="noopener noreferrer">
           Download PDF
-        </Button>
+        </LinkButton>
       </div>
 
       <div class="relative w-full pt-[141.42%]">

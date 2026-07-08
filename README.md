@@ -1,6 +1,6 @@
 # Portfolio
 
-Personal programming portfolio built with Astro, Bun, Tailwind CSS, and shadcn-style UI primitives.
+Personal programming portfolio built with bun, Astro, Tailwind v4, and shadcn/ui primitives.
 
 ## Commands
 

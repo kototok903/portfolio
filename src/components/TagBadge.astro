@@ -1,5 +1,5 @@
 ---
-import Badge from "@/components/ui/Badge.astro"
+import { Badge } from "@/components/ui/badge"
 import { tagsData } from "@/lib/tags"
 
 interface Props {
@@ -12,7 +12,7 @@ const data = tagsData[tag]
 
 {
   data && (
-    <Badge variant="outline" class="bg-card/50 transition cursor-default hover:bg-card">
+    <Badge variant="outline" className="cursor-default rounded-md">
       {data.icon && <img src={data.icon} alt={`${data.name} icon`} width="20" height="20" loading="lazy" />}
       {data.name}
     </Badge>

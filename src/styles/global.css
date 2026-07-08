@@ -142,6 +142,9 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
 
   --shadow-2xs: var(--shadow-2xs);
   --shadow-xs: var(--shadow-xs);
@@ -170,10 +173,6 @@
 
   .title {
     @apply text-3xl font-bold decoration-border/75 decoration-2 underline-offset-8;
-  }
-
-  .animate-button {
-    @apply transform transition-transform duration-150 ease-in-out hover:scale-105 active:scale-110;
   }
 }
 
