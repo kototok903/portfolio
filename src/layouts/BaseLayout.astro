@@ -1,0 +1,43 @@
+---
+import Header from "@/components/Header.astro"
+import Footer from "@/components/Footer.astro"
+import "@/styles/global.css"
+
+interface Props {
+  title?: string
+  description?: string
+}
+
+const {
+  title = "Stas' Portfolio",
+  description = "Stas Bronevskiy's personal computer science portfolio",
+} = Astro.props
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f4f4f4" />
+    <link rel="icon" href="/favicon.ico" />
+    <title>{title}</title>
+    <script is:inline>
+      (() => {
+        const stored = localStorage.getItem("theme")
+        const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches
+        if (stored === "dark" || (!stored && systemDark)) {
+          document.documentElement.classList.add("dark")
+        }
+      })()
+    </script>
+  </head>
+  <body class="flex min-h-screen flex-col font-sans antialiased">
+    <Header pathname={Astro.url.pathname} />
+    <main class="grow">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

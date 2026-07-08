@@ -1,0 +1,20 @@
+---
+import Badge from "@/components/ui/Badge.astro"
+import { tagsData } from "@/lib/tags"
+
+interface Props {
+  tag: string
+}
+
+const { tag } = Astro.props
+const data = tagsData[tag]
+---
+
+{
+  data && (
+    <Badge variant="outline" class="bg-card/50 transition cursor-default hover:bg-card">
+      {data.icon && <img src={data.icon} alt={`${data.name} icon`} width="20" height="20" loading="lazy" />}
+      {data.name}
+    </Badge>
+  )
+}

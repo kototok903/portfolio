@@ -1,0 +1,210 @@
+---
+import { navItems } from "@/lib/data"
+import { buttonVariants } from "@/lib/ui"
+import { cn } from "@/lib/utils"
+import { ArrowDownIcon, ArrowLeftIcon, ChevronDownIcon, MoonIcon, SunIcon } from "@lucide/astro"
+
+interface Props {
+  pathname: string
+}
+
+const { pathname } = Astro.props
+const isHome = pathname === "/"
+
+function sectionHref(id: string) {
+  return isHome ? `#${id}` : `/#${id}`
+}
+
+function isCurrent(item: (typeof navItems)[number]) {
+  return Boolean(
+    pathname !== "/" &&
+      (item.href === pathname || item.subItems?.some((sub) => sub.href === pathname)),
+  )
+}
+
+const navButtonClass = (active = false) =>
+  cn(
+    buttonVariants({ variant: "ghost" }),
+    "text-base font-normal text-muted-foreground transition-colors data-[active=true]:bg-accent data-[active=true]:text-foreground",
+    active && "bg-accent text-foreground",
+  )
+---
+
+<header class="fixed inset-x-0 top-0 z-50 sm:px-3">
+  <nav
+    class="mx-auto flex max-w-4xl items-center justify-between bg-background/75 p-3 shadow-lg backdrop-blur-sm sm:mt-6 sm:rounded-lg"
+    aria-label="Main navigation"
+  >
+    <div class="flex w-9 justify-start">
+      {
+        isHome ? (
+          <div class="size-9" aria-hidden />
+        ) : (
+          <a
+            href="/"
+            class={cn(buttonVariants({ variant: "ghost", size: "icon" }), "text-muted-foreground")}
+            aria-label="Back home"
+          >
+            <ArrowLeftIcon aria-hidden />
+          </a>
+        )
+      }
+    </div>
+
+    <ul class="flex flex-wrap items-center justify-center gap-x-1 text-base sm:gap-x-4">
+      {
+        navItems.map((item, index) => (
+          <li class="relative" data-nav-item>
+            {item.subItems ? (
+              <>
+                <button
+                  type="button"
+                  class={cn(navButtonClass(isCurrent(item)), "group gap-2")}
+                  data-section-link={item.id}
+                  data-menu-button
+                  aria-expanded="false"
+                  aria-controls={`nav-menu-${index}`}
+                >
+                  {item.name}
+                  <ChevronDownIcon class="size-4 transition-transform group-aria-expanded:rotate-180" aria-hidden />
+                </button>
+                <div
+                  id={`nav-menu-${index}`}
+                  class="absolute left-0 top-full mt-2 min-w-40 rounded-md bg-background/90 p-1 text-popover-foreground shadow-md backdrop-blur-sm"
+                  data-menu
+                  hidden
+                >
+                  <a
+                    href={sectionHref(item.id)}
+                    class="flex items-center gap-2 rounded-sm px-2 py-1.5 text-base font-normal text-muted-foreground outline-none hover:bg-accent hover:text-accent-foreground focus-visible:bg-accent focus-visible:text-accent-foreground"
+                    data-close-menu
+                  >
+                    {isHome && <ArrowDownIcon class="size-4" aria-hidden />}
+                    {item.name}
+                  </a>
+                  {item.subItems.map((sub) => (
+                    <a
+                      href={sub.href}
+                      class={cn(
+                        "flex items-center rounded-sm px-2 py-1.5 text-base font-normal text-muted-foreground outline-none hover:bg-accent hover:text-accent-foreground focus-visible:bg-accent focus-visible:text-accent-foreground",
+                        pathname === sub.href && "bg-accent text-foreground",
+                      )}
+                      data-close-menu
+                    >
+                      {sub.name}
+                    </a>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <a href={sectionHref(item.id)} class={navButtonClass(isCurrent(item))} data-section-link={item.id}>
+                {item.name}
+              </a>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="flex w-9 justify-end">
+      <button
+        type="button"
+        class={cn(buttonVariants({ variant: "ghost", size: "icon" }), "text-muted-foreground")}
+        data-theme-toggle
+        aria-label="Toggle theme"
+      >
+        <SunIcon class="size-4 dark:hidden" aria-hidden />
+        <MoonIcon class="hidden size-4 dark:block" aria-hidden />
+      </button>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const root = document.documentElement
+
+  function setTheme(theme: "dark" | "light") {
+    root.classList.toggle("dark", theme === "dark")
+    localStorage.setItem("theme", theme)
+  }
+
+  document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+    button.addEventListener("click", () => {
+      setTheme(root.classList.contains("dark") ? "light" : "dark")
+    })
+  })
+
+  const closeMenus = () => {
+    document.querySelectorAll<HTMLElement>("[data-menu-button]").forEach((button) => {
+      button.setAttribute("aria-expanded", "false")
+    })
+    document.querySelectorAll<HTMLElement>("[data-menu]").forEach((menu) => {
+      menu.hidden = true
+    })
+  }
+
+  document.querySelectorAll<HTMLElement>("[data-menu-button]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const expanded = button.getAttribute("aria-expanded") === "true"
+      closeMenus()
+      button.setAttribute("aria-expanded", String(!expanded))
+      const menuId = button.getAttribute("aria-controls")
+      const menu = menuId ? document.getElementById(menuId) : null
+      if (menu) menu.hidden = expanded
+    })
+  })
+
+  document.querySelectorAll("[data-close-menu]").forEach((link) => {
+    link.addEventListener("click", closeMenus)
+  })
+
+  document.addEventListener("click", (event) => {
+    if (!(event.target instanceof Element) || event.target.closest("[data-nav-item]")) return
+    closeMenus()
+  })
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeMenus()
+  })
+
+  if (location.pathname === "/") {
+    const links = Array.from(document.querySelectorAll<HTMLElement>("[data-section-link]"))
+    const sections = links
+      .map((link) => document.getElementById(link.dataset.sectionLink ?? ""))
+      .filter((section): section is HTMLElement => Boolean(section))
+
+    const activate = (id: string) => {
+      for (const link of links) {
+        link.dataset.active = String(link.dataset.sectionLink === id)
+      }
+    }
+
+    const updateActiveSection = () => {
+      const anchorY = Math.min(window.innerHeight * 0.4, 360)
+      const active = sections.find((section, index) => {
+        const rect = section.getBoundingClientRect()
+        const next = sections[index + 1]?.getBoundingClientRect()
+        return rect.top <= anchorY && (!next || next.top > anchorY)
+      })
+
+      activate(active?.id ?? sections[0]?.id ?? "")
+    }
+
+    let scheduled = false
+    const scheduleUpdate = () => {
+      if (scheduled) return
+      scheduled = true
+      requestAnimationFrame(() => {
+        scheduled = false
+        updateActiveSection()
+      })
+    }
+
+    updateActiveSection()
+    document.addEventListener("scroll", scheduleUpdate, { passive: true })
+    window.addEventListener("resize", scheduleUpdate)
+    window.addEventListener("hashchange", () => {
+      requestAnimationFrame(updateActiveSection)
+    })
+  }
+</script>

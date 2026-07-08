@@ -1,0 +1,14 @@
+---
+import TagBadge from "@/components/TagBadge.astro"
+
+interface Props {
+  tags: string[]
+  class?: string
+}
+
+const { tags, class: className = "" } = Astro.props
+---
+
+<div class={`flex flex-row flex-wrap gap-1 ${className}`}>
+  {tags.map((tag) => <TagBadge tag={tag} />)}
+</div>

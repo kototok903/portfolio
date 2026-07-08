@@ -1,0 +1,18 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro"
+import ContactForm from "@/components/ContactForm.astro"
+import Intro from "@/components/Intro.astro"
+import Projects from "@/components/Projects.astro"
+import Skills from "@/components/Skills.astro"
+---
+
+<BaseLayout>
+  <section class="py-24">
+    <div class="container max-w-4xl">
+      <Intro />
+      <Projects count={4} />
+      <Skills />
+      <ContactForm />
+    </div>
+  </section>
+</BaseLayout>

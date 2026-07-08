@@ -1,0 +1,30 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro"
+import Button from "@/components/ui/Button.astro"
+
+const resumePreviewUrl = "https://drive.google.com/file/d/16xGqgVDR2kOtHW93LB6xWMO1aRzlvRjz/preview"
+const resumeDownloadUrl =
+  "https://drive.google.com/uc?export=download&id=16xGqgVDR2kOtHW93LB6xWMO1aRzlvRjz"
+---
+
+<BaseLayout title="Resume | Stas' Portfolio">
+  <section class="py-24">
+    <div class="container max-w-3xl">
+      <h1 class="title mb-4">My resume</h1>
+
+      <div class="mb-4">
+        <Button href={resumeDownloadUrl} target="_blank" rel="noopener noreferrer">
+          Download PDF
+        </Button>
+      </div>
+
+      <div class="relative w-full pt-[141.42%]">
+        <iframe
+          src={resumePreviewUrl}
+          title="Resume PDF preview"
+          class="absolute left-0 top-0 h-full w-full rounded-lg border border-border"
+          loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
