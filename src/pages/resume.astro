@@ -1,30 +1,37 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro"
-import { LinkButton } from "@/components/LinkButton"
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import SectionLabel from "@/components/SectionLabel.astro";
+import { LinkButton } from "@/components/LinkButton";
+import { DownloadIcon } from "@lucide/astro";
 
-const resumePreviewUrl = "https://drive.google.com/file/d/16xGqgVDR2kOtHW93LB6xWMO1aRzlvRjz/preview"
+const resumePreviewUrl =
+  "https://drive.google.com/file/d/16xGqgVDR2kOtHW93LB6xWMO1aRzlvRjz/preview";
 const resumeDownloadUrl =
-  "https://drive.google.com/uc?export=download&id=16xGqgVDR2kOtHW93LB6xWMO1aRzlvRjz"
+  "https://drive.google.com/uc?export=download&id=16xGqgVDR2kOtHW93LB6xWMO1aRzlvRjz";
 ---
 
 <BaseLayout title="Resume | Stas' Portfolio">
-  <section class="py-24">
-    <div class="container max-w-3xl">
-      <h1 class="title mb-4">My resume</h1>
+  <section class="mx-auto max-w-3xl px-5 py-20 sm:px-10">
+    <SectionLabel label="Resume" class="mb-8" />
 
-      <div class="mb-4">
-        <LinkButton href={resumeDownloadUrl} target="_blank" rel="noopener noreferrer">
-          Download PDF
-        </LinkButton>
-      </div>
+    <div class="mb-6 flex justify-center">
+      <LinkButton
+        href={resumeDownloadUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        variant="handle"
+      >
+        <DownloadIcon aria-hidden />
+        Download PDF
+      </LinkButton>
+    </div>
 
-      <div class="relative w-full pt-[141.42%]">
-        <iframe
-          src={resumePreviewUrl}
-          title="Resume PDF preview"
-          class="absolute left-0 top-0 h-full w-full rounded-lg border border-border"
-          loading="lazy"></iframe>
-      </div>
+    <div class="relative w-full border border-border-strong pt-[141.42%]">
+      <iframe
+        src={resumePreviewUrl}
+        title="Resume PDF preview"
+        class="absolute left-0 top-0 h-full w-full"
+        loading="lazy"></iframe>
     </div>
   </section>
 </BaseLayout>

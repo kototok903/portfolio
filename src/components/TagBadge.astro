@@ -1,20 +1,31 @@
 ---
-import { Badge } from "@/components/ui/badge"
-import { tagsData } from "@/lib/tags"
+import { Badge } from "@/components/ui/badge";
+import { tagsData, type TagName } from "@/lib/tags";
+import { Image } from "astro:assets";
+import type { ComponentProps } from "react";
 
 interface Props {
-  tag: string
+  tag: TagName;
+  variant?: ComponentProps<typeof Badge>["variant"];
 }
 
-const { tag } = Astro.props
-const data = tagsData[tag]
+const { tag, variant = "outline-card" } = Astro.props;
+const { name, icon } = tagsData[tag];
 ---
 
 {
-  data && (
-    <Badge variant="outline" className="cursor-default rounded-md">
-      {data.icon && <img src={data.icon} alt={`${data.name} icon`} width="20" height="20" loading="lazy" />}
-      {data.name}
+  (
+    <Badge variant={variant}>
+      {icon && (
+        <Image
+          src={icon}
+          alt={`${name} icon`}
+          width="16"
+          height="16"
+          loading="lazy"
+        />
+      )}
+      {name}
     </Badge>
   )
 }

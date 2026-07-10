@@ -1,17 +1,18 @@
 ---
-import Header from "@/components/Header"
-import Footer from "@/components/Footer.astro"
-import "@/styles/global.css"
+import Header from "@/components/Header";
+import Footer from "@/components/Footer.astro";
+import CropMarks from "@/components/CropMarks.astro";
+import "@/styles/global.css";
 
 interface Props {
-  title?: string
-  description?: string
+  title?: string;
+  description?: string;
 }
 
 const {
   title = "Stas' Portfolio",
   description = "Stas Bronevskiy's personal computer science portfolio",
-} = Astro.props
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -20,28 +21,12 @@ const {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#ebebeb" />
-    <link rel="icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#1c2130" />
+    <link rel="icon" href="/public/favicon.ico" />
     <title>{title}</title>
-    <script is:inline>
-      (() => {
-        const themeColors = {
-          light: "#ebebeb",
-          dark: "#1c2433",
-        }
-        const stored = localStorage.getItem("theme")
-        const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches
-        const theme = stored === "dark" || (!stored && systemDark) ? "dark" : "light"
-        const themeColor = document.querySelector('meta[name="theme-color"]')
-
-        if (theme === "dark") {
-          document.documentElement.classList.add("dark")
-        }
-        themeColor?.setAttribute("content", themeColors[theme])
-      })()
-    </script>
   </head>
   <body class="flex min-h-screen flex-col font-sans antialiased">
+    <CropMarks />
     <Header pathname={Astro.url.pathname} client:load />
     <main class="grow">
       <slot />

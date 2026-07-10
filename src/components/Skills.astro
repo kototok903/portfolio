@@ -1,38 +1,37 @@
 ---
-import Tags from "@/components/Tags.astro"
+import Tags from "@/components/Tags.astro";
+import type { TagName } from "@/lib/tags";
 
-const skills = [
-  "c",
-  "cpp",
-  "java",
-  "csharp",
-  "python",
-  "go",
-  "haskell",
-  "html",
-  "css",
-  "javascript",
-  "typescript",
-  "react",
-  "next-js",
-  "android",
-  "dotnet-framework",
-  "spring-boot",
-  "express-js",
-  "git",
-  "github",
-  "tailwind-css",
-  "shadcn-ui",
-  "mysql",
-  "websocket",
-  "android-studio",
-  "webrtc",
-  "stripe",
-  "monaco-editor",
-]
+const groups: { name: string; tags: TagName[] }[] = [
+  {
+    name: "Languages",
+    tags: ["typescript", "go", "java", "cpp"],
+  },
+  {
+    name: "Frontend",
+    tags: ["react", "tailwind-css", "vite", "shadcn-ui"],
+  },
+  {
+    name: "Backend & Data",
+    tags: ["node", "postgres"],
+  },
+  {
+    name: "Tools & Technologies",
+    tags: ["webassembly", "websocket", "git", "stripe"],
+  },
+];
 ---
 
-<section id="skills" class="relative isolate m-auto max-w-3xl scroll-mt-32 pb-32">
-  <h1 class="title">Skills</h1>
-  <Tags tags={skills} class="mx-auto mt-3 max-w-3xl justify-center" />
-</section>
+<div class="mx-auto grid max-w-3xl gap-x-10 gap-y-7 sm:grid-cols-2">
+  {
+    groups.map(group => (
+      <div>
+        <h3 class="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.12em] text-primary">
+          {group.name}
+          <span class="h-px flex-1 bg-border" />
+        </h3>
+        <Tags tags={group.tags} variant="secondary" class="mt-3" />
+      </div>
+    ))
+  }
+</div>

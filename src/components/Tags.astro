@@ -1,15 +1,18 @@
 ---
-import TagBadge from "@/components/TagBadge.astro"
-import { cn } from "@/lib/utils"
+import TagBadge from "@/components/TagBadge.astro";
+import { cn } from "@/lib/utils";
+import type { TagName } from "@/lib/tags";
+import type { ComponentProps } from "react";
 
 interface Props {
-  tags: string[]
-  class?: string
+  tags: TagName[];
+  variant?: ComponentProps<typeof TagBadge>["variant"];
+  class?: string;
 }
 
-const { tags, class: className = "" } = Astro.props
+const { tags, variant, class: className = "" } = Astro.props;
 ---
 
-<div class={cn("flex flex-row flex-wrap gap-1", className)}>
-  {tags.map((tag) => <TagBadge tag={tag} />)}
+<div class={cn("flex flex-wrap gap-1.5", className)}>
+  {tags.map(tag => <TagBadge tag={tag} variant={variant} />)}
 </div>

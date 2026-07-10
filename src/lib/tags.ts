@@ -1,168 +1,222 @@
-import cIcon from "@/assets/svgs/c.svg?url"
-import cppIcon from "@/assets/svgs/cpp.svg?url"
-import csharpIcon from "@/assets/svgs/csharp.svg?url"
-import gitIcon from "@/assets/svgs/git.svg?url"
-import githubIcon from "@/assets/svgs/github.svg?url"
-import javaIcon from "@/assets/svgs/java.svg?url"
-import jsIcon from "@/assets/svgs/javascript.svg?url"
-import htmlIcon from "@/assets/svgs/html.svg?url"
-import cssIcon from "@/assets/svgs/css-new.svg?url"
-import mysqlIcon from "@/assets/svgs/mysql.svg?url"
-import nextjsIcon from "@/assets/svgs/next-js.svg?url"
-import reactIcon from "@/assets/svgs/react.svg?url"
-import shadcnuiIcon from "@/assets/svgs/shadcnui.svg?url"
-import tsIcon from "@/assets/svgs/typescript.svg?url"
-import tailwindIcon from "@/assets/svgs/tailwind-css.svg?url"
-import pythonIcon from "@/assets/svgs/python.svg?url"
-import expressIcon from "@/assets/svgs/express-original.svg?url"
-import goIcon from "@/assets/svgs/go.svg?url"
-import haskellIcon from "@/assets/svgs/haskell.svg?url"
-import androidIcon from "@/assets/svgs/android.svg?url"
-import androidStudioIcon from "@/assets/svgs/android-studio.svg?url"
-import dotnetIcon from "@/assets/svgs/dotnet.svg?url"
-import microsoftIcon from "@/assets/svgs/microsoft.svg?url"
-import webrtcIcon from "@/assets/svgs/webrtc.svg?url"
-import websocketIcon from "@/assets/svgs/websocket.svg?url"
-import stripeIcon from "@/assets/svgs/stripe.svg?url"
-import springIcon from "@/assets/svgs/spring.svg?url"
-import springBootIcon from "@/assets/svgs/spring-boot.svg?url"
+import cIcon from "@/assets/svgs/c.svg?url";
+import cppIcon from "@/assets/svgs/cpp.svg?url";
+import csharpIcon from "@/assets/svgs/csharp.svg?url";
+import gitIcon from "@/assets/svgs/git.svg?url";
+import githubIcon from "@/assets/svgs/github.svg?url";
+import javaIcon from "@/assets/svgs/java.svg?url";
+import jsIcon from "@/assets/svgs/javascript.svg?url";
+import htmlIcon from "@/assets/svgs/html.svg?url";
+import cssIcon from "@/assets/svgs/css-new.svg?url";
+import mysqlIcon from "@/assets/svgs/mysql.svg?url";
+import nextjsIcon from "@/assets/svgs/next-js.svg?url";
+import nodeIcon from "@/assets/svgs/node-js.svg?url";
+import postgresIcon from "@/assets/svgs/postgresql.svg?url";
+import reactIcon from "@/assets/svgs/react.svg?url";
+import shadcnuiIcon from "@/assets/svgs/shadcnui.svg?url";
+import tsIcon from "@/assets/svgs/typescript.svg?url";
+import tailwindIcon from "@/assets/svgs/tailwind-css.svg?url";
+import pythonIcon from "@/assets/svgs/python.svg?url";
+import expressIcon from "@/assets/svgs/express-original.svg?url";
+import goIcon from "@/assets/svgs/go.svg?url";
+import haskellIcon from "@/assets/svgs/haskell.svg?url";
+import androidIcon from "@/assets/svgs/android.svg?url";
+import androidStudioIcon from "@/assets/svgs/android-studio.svg?url";
+import dotnetIcon from "@/assets/svgs/dotnet.svg?url";
+import microsoftIcon from "@/assets/svgs/microsoft.svg?url";
+import webrtcIcon from "@/assets/svgs/webrtc.svg?url";
+import websocketIcon from "@/assets/svgs/websocket.svg?url";
+import stripeIcon from "@/assets/svgs/stripe.svg?url";
+import springIcon from "@/assets/svgs/spring.svg?url";
+import springBootIcon from "@/assets/svgs/spring-boot.svg?url";
+
+// TODO: add missing icons
+// TODO 2: add SSE, bun, cockroachdb, clickhouse, temporal, redis, aws s3, libs for pdf editor
+
+export const TAG_NAMES = [
+  "c",
+  "cpp",
+  "csharp",
+  "git",
+  "github",
+  "next-js",
+  "java",
+  "java-swing",
+  "javascript",
+  "html",
+  "css",
+  "typescript",
+  "rust",
+  "webassembly",
+  "vite",
+  "canvas",
+  "react",
+  "python",
+  "mysql",
+  "go",
+  "haskell",
+  "code-world",
+  "express-js",
+  "webrtc",
+  "websocket",
+  "shadcn-ui",
+  "tailwind-css",
+  "android",
+  "android-studio",
+  "monaco-editor",
+  "dotnet-framework",
+  "stripe",
+  "spring",
+  "spring-boot",
+  "node",
+  "postgres",
+] as const;
+
+export type TagName = (typeof TAG_NAMES)[number];
 
 export type TagData = {
-  name: string
-  icon?: string
-}
+  name: string;
+  icon?: string;
+};
 
-export const tagsData: { [tag: string]: TagData } = {
-  "c": {
+export const tagsData: Record<TagName, TagData> = {
+  c: {
     name: "C",
-    icon: cIcon
+    icon: cIcon,
   },
-  "cpp": {
+  cpp: {
     name: "C++",
-    icon: cppIcon
+    icon: cppIcon,
   },
-  "csharp": {
+  csharp: {
     name: "C#",
-    icon: csharpIcon
+    icon: csharpIcon,
   },
-  "git": {
+  git: {
     name: "Git",
-    icon: gitIcon
+    icon: gitIcon,
   },
-  "github": {
+  github: {
     name: "GitHub",
-    icon: githubIcon
+    icon: githubIcon,
   },
   "next-js": {
     name: "Next.JS",
-    icon: nextjsIcon
+    icon: nextjsIcon,
   },
-  "java": {
+  java: {
     name: "Java",
-    icon: javaIcon
+    icon: javaIcon,
   },
   "java-swing": {
     name: "Java Swing",
-    icon: javaIcon
+    icon: javaIcon,
   },
-  "javascript": {
+  javascript: {
     name: "JavaScript",
-    icon: jsIcon
+    icon: jsIcon,
   },
-  "html": {
+  html: {
     name: "HTML",
-    icon: htmlIcon
+    icon: htmlIcon,
   },
-  "css": {
+  css: {
     name: "CSS",
-    icon: cssIcon
+    icon: cssIcon,
   },
-  "typescript": {
+  typescript: {
     name: "TypeScript",
-    icon: tsIcon
+    icon: tsIcon,
   },
-  "rust": {
+  rust: {
     name: "Rust",
   },
-  "webassembly": {
+  webassembly: {
     name: "WebAssembly",
   },
-  "vite": {
+  vite: {
     name: "Vite",
   },
-  "canvas": {
+  canvas: {
     name: "Canvas",
   },
-  "react": {
+  react: {
     name: "React",
-    icon: reactIcon
+    icon: reactIcon,
   },
-  "python": {
+  python: {
     name: "Python",
-    icon: pythonIcon
+    icon: pythonIcon,
   },
-  "mysql": {
+  mysql: {
     name: "MySQL",
-    icon: mysqlIcon
+    icon: mysqlIcon,
   },
-  "go": {
+  go: {
     name: "Go",
-    icon: goIcon
+    icon: goIcon,
   },
-  "haskell": {
+  haskell: {
     name: "Haskell",
-    icon: haskellIcon
+    icon: haskellIcon,
   },
   "code-world": {
     name: "CodeWorld",
-    icon: haskellIcon
+    icon: haskellIcon,
   },
   "express-js": {
     name: "Express.js",
-    icon: expressIcon
+    icon: expressIcon,
   },
-  "webrtc": {
+  webrtc: {
     name: "WebRTC",
-    icon: webrtcIcon
+    icon: webrtcIcon,
   },
-  "websocket": {
+  websocket: {
     name: "WebSocket",
-    icon: websocketIcon
+    icon: websocketIcon,
   },
   "shadcn-ui": {
     name: "Shadcn/UI",
-    icon: shadcnuiIcon
+    icon: shadcnuiIcon,
   },
   "tailwind-css": {
     name: "Tailwind CSS",
-    icon: tailwindIcon
+    icon: tailwindIcon,
   },
-  "android": {
+  android: {
     name: "Android",
-    icon: androidIcon
+    icon: androidIcon,
   },
   "android-studio": {
     name: "Android Studio",
-    icon: androidStudioIcon
+    icon: androidStudioIcon,
   },
   "monaco-editor": {
     name: "Monaco Editor",
-    icon: microsoftIcon
+    icon: microsoftIcon,
   },
   "dotnet-framework": {
     name: ".NET Framework",
-    icon: dotnetIcon
+    icon: dotnetIcon,
   },
-  "stripe": {
+  stripe: {
     name: "Stripe",
-    icon: stripeIcon
+    icon: stripeIcon,
   },
-  "spring": {
+  spring: {
     name: "Spring",
-    icon: springIcon
+    icon: springIcon,
   },
   "spring-boot": {
     name: "Spring Boot",
-    icon: springBootIcon
+    icon: springBootIcon,
   },
-}
+  node: {
+    name: "Node.js",
+    icon: nodeIcon,
+  },
+  postgres: {
+    name: "PostgreSQL",
+    icon: postgresIcon,
+  },
+};

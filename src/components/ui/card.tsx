@@ -15,6 +15,19 @@ function Card({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+function CardBar({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card-bar"
+      className={cn(
+        "flex items-center justify-between border-b bg-card-bar px-3.5 py-2 font-mono text-[11px] text-faint",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
 function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -83,6 +96,7 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
 
 export {
   Card,
+  CardBar,
   CardHeader,
   CardFooter,
   CardTitle,

@@ -1,15 +1,34 @@
 ---
-import { actions } from "astro:actions"
-import { Button } from "@/components/ui/button"
-import { Field, FieldGroup, FieldLabel } from "@/components/ui/field"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
+import { actions } from "astro:actions";
+import { Button } from "@/components/ui/button";
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { CONTACT_EMAIL } from "@/lib/constants";
 ---
 
-<section id="contact-form" class="relative isolate m-auto max-w-3xl scroll-mt-32">
-  <h1 class="title">Contact me</h1>
+<div class="mx-auto max-w-xl text-center">
+  <h2 class="font-sans text-4xl font-bold tracking-tight sm:text-5xl">
+    Let&rsquo;s <span class="font-serif font-normal italic text-primary"
+      >build</span
+    > something.
+  </h2>
+  <p class="mt-4 text-muted-foreground">
+    Open to internships, new-grad roles, and interesting problems. Use the form
+    below, or email{" "}
+    <a
+      href={`mailto:${CONTACT_EMAIL}`}
+      class="font-mono text-sm text-primary-hi hover:text-primary hover:underline"
+      >{CONTACT_EMAIL}</a
+    >.
+  </p>
 
-  <form method="POST" action={actions.sendContact} class="mt-6 lg:flex-auto" data-contact-form>
+  <form
+    method="POST"
+    action={actions.sendContact}
+    class="mt-8 text-left"
+    data-contact-form
+  >
     <div class="hidden" aria-hidden>
       <label>
         Website
@@ -55,56 +74,72 @@ import { Textarea } from "@/components/ui/textarea"
       </Field>
     </FieldGroup>
 
-    <div class="m-auto mt-6 max-w-xl">
-      <Button type="submit" className="w-full" data-contact-submit>
-        Submit
+    <div class="mt-6">
+      <Button
+        type="submit"
+        variant="handle"
+        className="w-full"
+        data-contact-submit
+      >
+        Send message
       </Button>
     </div>
 
-    <p class="mt-4 min-h-5 text-center text-sm text-muted-foreground" data-contact-status aria-live="polite"></p>
+    <p
+      class="mt-4 min-h-5 text-center text-sm text-muted-foreground"
+      data-contact-status
+      aria-live="polite"
+    >
+    </p>
   </form>
-</section>
+</div>
 
 <script>
-  import { actions } from "astro:actions"
+  // TODO: why is all of this in a script tag?
+  import { actions } from "astro:actions";
 
-  const form = document.querySelector<HTMLFormElement>("[data-contact-form]")
-  const submit = document.querySelector<HTMLButtonElement>("[data-contact-submit]")
-  const status = document.querySelector<HTMLElement>("[data-contact-status]")
+  const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
+  const submit = document.querySelector<HTMLButtonElement>(
+    "[data-contact-submit]",
+  );
+  const status = document.querySelector<HTMLElement>("[data-contact-status]");
 
-  form?.addEventListener("submit", async (event) => {
-    event.preventDefault()
+  form?.addEventListener("submit", async event => {
+    event.preventDefault();
 
-    if (!form.reportValidity()) return
+    if (!form.reportValidity()) return;
 
-    const originalLabel = submit?.textContent ?? "Submit"
+    const originalLabel = submit?.textContent ?? "Submit";
     if (submit) {
-      submit.disabled = true
-      submit.textContent = "Submitting..."
+      submit.disabled = true;
+      submit.textContent = "Submitting...";
     }
     if (status) {
-      status.textContent = ""
-      status.className = "mt-4 min-h-5 text-center text-sm text-muted-foreground"
+      status.textContent = "";
+      status.className =
+        "mt-4 min-h-5 text-center text-sm text-muted-foreground";
     }
 
-    const { error } = await actions.sendContact(new FormData(form))
+    const { error } = await actions.sendContact(new FormData(form));
 
     if (error) {
       if (status) {
-        status.textContent = error.message || "An error occurred. Please try again."
-        status.className = "mt-4 min-h-5 text-center text-sm text-destructive"
+        status.textContent =
+          error.message || "An error occurred. Please try again.";
+        status.className = "mt-4 min-h-5 text-center text-sm text-destructive";
       }
     } else {
-      form.reset()
+      form.reset();
       if (status) {
-        status.textContent = "Message sent successfully."
-        status.className = "mt-4 min-h-5 text-center text-sm text-muted-foreground"
+        status.textContent = "Message sent successfully.";
+        status.className =
+          "mt-4 min-h-5 text-center text-sm text-muted-foreground";
       }
     }
 
     if (submit) {
-      submit.disabled = false
-      submit.textContent = originalLabel
+      submit.disabled = false;
+      submit.textContent = originalLabel;
     }
-  })
+  });
 </script>
