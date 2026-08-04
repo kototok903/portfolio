@@ -75,14 +75,18 @@ export default function Header({ pathname }: HeaderProps) {
 
   const isActive = (id: string) =>
     isHome ? activeSection === id : currentByPath.has(id);
+  const showBackButton = !isHome;
 
   return (
-    <header className="sticky top-0 z-40 hidden border-b border-border bg-background/80 backdrop-blur-md sm:block">
+    <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur-md">
       <nav
-        className="mx-auto flex max-w-5xl items-center justify-between px-5 py-2 sm:px-10"
+        className={cn(
+          "mx-auto flex min-h-12 max-w-5xl items-center justify-center p-2 sm:px-10",
+          showBackButton && "justify-between",
+        )}
         aria-label="Main navigation"
       >
-        {!isHome ? (
+        {showBackButton ? (
           <Button
             variant="ghost"
             size="icon-sm"
@@ -93,11 +97,9 @@ export default function Header({ pathname }: HeaderProps) {
               <ArrowLeftIcon aria-hidden />
             </a>
           </Button>
-        ) : (
-          <div className="size-8" />
-        )}
+        ) : null}
 
-        <ul className="flex items-center gap-7 font-mono text-[13px]">
+        <ul className="flex items-center gap-4 font-mono text-[13px] sm:gap-7">
           {navItems.map(item => (
             <li key={item.id}>
               <a
@@ -112,7 +114,7 @@ export default function Header({ pathname }: HeaderProps) {
             </li>
           ))}
         </ul>
-        <div />
+        <div className={cn(showBackButton && "sm:size-8")} />
       </nav>
     </header>
   );

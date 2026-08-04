@@ -2,7 +2,6 @@
 import Tags from "@/components/Tags.astro";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardHeader,
@@ -17,7 +16,7 @@ import { workData } from "@/lib/work";
       <article>
         <Card variant="accent" cornerAccent>
           <CardHeader>
-            <CardTitle className="flex justify-between items-start">
+            <CardTitle className="flex justify-between items-start flex-wrap gap-2">
               <h3 class="text-xl font-semibold tracking-tight">
                 {job.role}
                 <span class="font-normal text-primary"> · {job.company}</span>

@@ -19,3 +19,12 @@
 .DS_Store
 *.pem
 *.tsbuildinfo
+
+# ai
+AGENTS.md
+/.agents
+skills-lock.json
+
+# temp
+/temp
+/tmp
