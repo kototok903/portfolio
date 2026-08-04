@@ -17,18 +17,18 @@ import { workData } from "@/lib/work";
       <article>
         <Card variant="accent" cornerAccent>
           <CardHeader>
-            <CardTitle>
+            <CardTitle className="flex justify-between items-start">
               <h3 class="text-xl font-semibold tracking-tight">
                 {job.role}
                 <span class="font-normal text-primary"> · {job.company}</span>
               </h3>
+              <div class="font-mono text-xs font-normal text-muted-foreground">
+                {job.period}
+              </div>
             </CardTitle>
-            <CardDescription className="max-w-prose text-[15px]">
+            <CardDescription className="max-w-prose text-[15px] whitespace-pre-line">
               {job.description}
             </CardDescription>
-            <CardAction className="font-mono text-xs text-muted-foreground">
-              {job.period}
-            </CardAction>
           </CardHeader>
 
           {job.tags && (

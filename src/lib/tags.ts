@@ -28,9 +28,18 @@ import websocketIcon from "@/assets/svgs/websocket.svg?url";
 import stripeIcon from "@/assets/svgs/stripe.svg?url";
 import springIcon from "@/assets/svgs/spring.svg?url";
 import springBootIcon from "@/assets/svgs/spring-boot.svg?url";
+import cockroachDbIcon from "@/assets/svgs/cockroachdb.svg?url";
+import viteIcon from "@/assets/svgs/vite.svg?url";
+import rustIcon from "@/assets/svgs/rust.svg?url";
+import webassemblyIcon from "@/assets/svgs/webassembly.svg?url";
+import bunIcon from "@/assets/svgs/bun.svg?url";
+import clickhouseIcon from "@/assets/svgs/clickhouse.svg?url";
+import temporalIcon from "@/assets/svgs/temporal.svg?url";
+import eventsIcon from "@/assets/svgs/events.svg?url";
+import redisIcon from "@/assets/svgs/redis.svg?url";
+import awsS3Icon from "@/assets/svgs/aws-s3.svg?url";
 
-// TODO: add missing icons
-// TODO 2: add SSE, bun, cockroachdb, clickhouse, temporal, redis, aws s3, libs for pdf editor
+// TODO: add SSE, bun, cockroachdb, clickhouse, temporal, redis, aws s3, libs for pdf editor
 
 export const TAG_NAMES = [
   "c",
@@ -69,6 +78,13 @@ export const TAG_NAMES = [
   "spring-boot",
   "node",
   "postgres",
+  "cockroachdb",
+  "bun",
+  "sse",
+  "clickhouse",
+  "temporal",
+  "redis",
+  "aws-s3",
 ] as const;
 
 export type TagName = (typeof TAG_NAMES)[number];
@@ -129,12 +145,15 @@ export const tagsData: Record<TagName, TagData> = {
   },
   rust: {
     name: "Rust",
+    icon: rustIcon,
   },
   webassembly: {
     name: "WebAssembly",
+    icon: webassemblyIcon,
   },
   vite: {
     name: "Vite",
+    icon: viteIcon,
   },
   canvas: {
     name: "Canvas",
@@ -218,5 +237,33 @@ export const tagsData: Record<TagName, TagData> = {
   postgres: {
     name: "PostgreSQL",
     icon: postgresIcon,
+  },
+  cockroachdb: {
+    name: "CockroachDB",
+    icon: cockroachDbIcon,
+  },
+  bun: {
+    name: "Bun",
+    icon: bunIcon,
+  },
+  sse: {
+    name: "SSE",
+    icon: eventsIcon,
+  },
+  clickhouse: {
+    name: "Clickhouse",
+    icon: clickhouseIcon,
+  },
+  temporal: {
+    name: "Temporal",
+    icon: temporalIcon,
+  },
+  redis: {
+    name: "Redis",
+    icon: redisIcon,
+  },
+  "aws-s3": {
+    name: "AWS S3",
+    icon: awsS3Icon,
   },
 };
