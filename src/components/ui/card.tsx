@@ -9,9 +9,8 @@ const cardVariants = cva(
     variants: {
       variant: {
         default: "",
-        accent: "border-border border-l-2 border-l-primary shadow-none",
-        terminal:
-          "group gap-0 overflow-hidden border-border py-0 transition-colors hover:border-primary",
+        accent: "border-border shadow-none",
+        terminal: "gap-0 overflow-hidden border-border py-0",
       },
     },
     defaultVariants: {
@@ -21,17 +20,39 @@ const cardVariants = cva(
 );
 
 function Card({
+  children,
   className,
   variant = "default",
+  cornerAccent = false,
   ...props
-}: React.ComponentProps<"div"> & VariantProps<typeof cardVariants>) {
+}: React.ComponentProps<"div"> &
+  VariantProps<typeof cardVariants> & {
+    cornerAccent?: boolean;
+  }) {
   return (
     <div
       data-slot="card"
       data-variant={variant}
-      className={cn(cardVariants({ variant }), className)}
+      className={cn(
+        cardVariants({ variant }),
+        cornerAccent && "group/card relative",
+        className,
+      )}
       {...props}
-    />
+    >
+      {children}
+      {cornerAccent && (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity group-focus-within/card:opacity-100 group-hover/card:opacity-100 motion-reduce:transition-none"
+        >
+          <span className="absolute top-0 left-0 size-4 rounded-tl-xl border-t-2 border-l-2 border-primary" />
+          <span className="absolute top-0 right-0 size-4 rounded-tr-xl border-t-2 border-r-2 border-primary" />
+          <span className="absolute bottom-0 left-0 size-4 rounded-bl-xl border-b-2 border-l-2 border-primary" />
+          <span className="absolute right-0 bottom-0 size-4 rounded-br-xl border-r-2 border-b-2 border-primary" />
+        </div>
+      )}
+    </div>
   );
 }
 

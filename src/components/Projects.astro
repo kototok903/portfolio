@@ -26,12 +26,12 @@ const ProjectHeading = headingLevel === 2 ? "h2" : "h3";
 
 <div class="grid gap-4 sm:grid-cols-2">
   {
-    projects.map((project, i) => (
+    projects.map(project => (
       <article class="flex">
-        <Card variant="terminal" className="flex-1">
+        <Card variant="terminal" cornerAccent className="flex-1">
           <CardBar>
             <span>{project.displayFilename}</span>
-            <!-- TODO: maybe add project date here -->
+            {/* TODO: maybe add project date here */}
           </CardBar>
 
           {project.image && (
