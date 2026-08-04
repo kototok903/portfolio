@@ -21,8 +21,14 @@ import goIcon from "@/assets/svgs/go.svg?url";
 import haskellIcon from "@/assets/svgs/haskell.svg?url";
 import androidIcon from "@/assets/svgs/android.svg?url";
 import androidStudioIcon from "@/assets/svgs/android-studio.svg?url";
+import anthropicIcon from "@/assets/svgs/anthropic.svg?url";
 import dotnetIcon from "@/assets/svgs/dotnet.svg?url";
+import epubIcon from "@/assets/svgs/epub.svg?url";
+import geminiIcon from "@/assets/svgs/gemini.svg?url";
 import microsoftIcon from "@/assets/svgs/microsoft.svg?url";
+import openaiIcon from "@/assets/svgs/openai.svg?url";
+import pdfJsIcon from "@/assets/svgs/pdf-js.svg?url";
+import pdfLibIcon from "@/assets/svgs/pdf-lib.svg?url";
 import webrtcIcon from "@/assets/svgs/webrtc.svg?url";
 import websocketIcon from "@/assets/svgs/websocket.svg?url";
 import stripeIcon from "@/assets/svgs/stripe.svg?url";
@@ -38,8 +44,9 @@ import temporalIcon from "@/assets/svgs/temporal.svg?url";
 import eventsIcon from "@/assets/svgs/events.svg?url";
 import redisIcon from "@/assets/svgs/redis.svg?url";
 import awsS3Icon from "@/assets/svgs/aws-s3.svg?url";
-
-// TODO: add SSE, bun, cockroachdb, clickhouse, temporal, redis, aws s3, libs for pdf editor
+import vercelIcon from "@/assets/svgs/vercel-light.svg?url";
+import xmlIcon from "@/assets/svgs/xml.svg?url";
+import zipIcon from "@/assets/svgs/zip.svg?url";
 
 export const TAG_NAMES = [
   "c",
@@ -85,6 +92,17 @@ export const TAG_NAMES = [
   "temporal",
   "redis",
   "aws-s3",
+  "pdf-js",
+  "pdf-lib",
+  "vercel-functions",
+  "ai-sdk",
+  "openai",
+  "anthropic",
+  "gemini",
+  "indexeddb",
+  "epub",
+  "xml",
+  "zip",
 ] as const;
 
 export type TagName = (typeof TAG_NAMES)[number];
@@ -265,5 +283,48 @@ export const tagsData: Record<TagName, TagData> = {
   "aws-s3": {
     name: "AWS S3",
     icon: awsS3Icon,
+  },
+  "pdf-js": {
+    name: "PDF.js",
+    icon: pdfJsIcon,
+  },
+  "pdf-lib": {
+    name: "pdf-lib",
+    icon: pdfLibIcon,
+  },
+  "vercel-functions": {
+    name: "Vercel Functions",
+    icon: vercelIcon,
+  },
+  "ai-sdk": {
+    name: "AI SDK",
+    icon: vercelIcon,
+  },
+  openai: {
+    name: "OpenAI",
+    icon: openaiIcon,
+  },
+  anthropic: {
+    name: "Anthropic",
+    icon: anthropicIcon,
+  },
+  gemini: {
+    name: "Gemini",
+    icon: geminiIcon,
+  },
+  indexeddb: {
+    name: "IndexedDB",
+  },
+  epub: {
+    name: "EPUB",
+    icon: epubIcon,
+  },
+  xml: {
+    name: "XML",
+    icon: xmlIcon,
+  },
+  zip: {
+    name: "ZIP",
+    icon: zipIcon,
   },
 };
