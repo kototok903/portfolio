@@ -62,8 +62,10 @@ import { GITHUB_URL, LINKEDIN_URL } from "@/lib/constants";
         class="aspect-3/4 w-full object-cover"
         src={authorImage}
         alt="Stas Bronevskiy"
-        quality={95}
-        loading="eager"
+        width={200}
+        densities={[1, 2]}
+        quality={85}
+        priority
       />
     </Card>
   </div>
