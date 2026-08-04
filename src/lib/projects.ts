@@ -10,6 +10,21 @@ import sokobanImg from "@/assets/images/projects/sokoban-screenshot.png";
 import sortForgeImg from "@/assets/images/projects/sortforge-screenshot-flipped.png";
 import type { TagName } from "@/lib/tags";
 
+export const PROJECT_NAMES = [
+  "pdf-editor",
+  "novtran",
+  "connections-info",
+  "sort-forge",
+  "novfmt",
+  "codegram",
+  "closetics",
+  "simple-edit",
+  "real-sort",
+  "sokoban",
+] as const;
+
+export type ProjectName = (typeof PROJECT_NAMES)[number];
+
 export type ProjectData = {
   title: string;
   description: string;
@@ -23,8 +38,8 @@ export type ProjectData = {
   }[];
 };
 
-export const projectsData: ProjectData[] = [
-  {
+export const projectsData: Record<ProjectName, ProjectData> = {
+  "pdf-editor": {
     title: "PDF Editor",
     description:
       "A privacy-focused, client-only PDF editor for adding text, images, and signatures; reorganizing and merging pages; searching documents; editing metadata; and performing lossless or lossy compression. PDF rendering and editing happen locally in the browser using PDF.js, pdf-lib, and WebAssembly-based compression engines.",
@@ -48,52 +63,7 @@ export const projectsData: ProjectData[] = [
       },
     ],
   },
-  {
-    title: "Connections Info",
-    description:
-      "An enhanced wrapper for NYT Connections with configurable research links for every word, historical puzzle navigation, guess history, and shareable results. A React client talks to a cache-aware Vercel Function that validates and normalizes puzzle data.",
-    tags: [
-      "typescript",
-      "react",
-      "vite",
-      "tailwind-css",
-      "shadcn-ui",
-      "vercel-functions",
-    ],
-    image: connectionsInfoImg,
-    displayFilename: "connections-info.ts",
-    githubUrl: "https://github.com/kototok903/connections-info",
-    links: [
-      {
-        href: "https://connections-info.kototok.dev/",
-        label: "Play",
-      },
-    ],
-  },
-  {
-    title: "SortForge",
-    description:
-      "SortForge is an interactive sorting algorithm visualizer featuring 20 algorithms, fast forward and rewind, and sound synthesis. Rust engine in WebAssembly emits events, and the React frontend handles timing and animation. Live event generation is available to simulate large arrays.",
-    tags: [
-      "rust",
-      "webassembly",
-      "react",
-      "typescript",
-      "vite",
-      "tailwind-css",
-      "canvas",
-    ],
-    image: sortForgeImg,
-    displayFilename: "sortforge.rs",
-    githubUrl: "https://github.com/kototok903/sort-forge",
-    links: [
-      {
-        href: "https://sort-forge.kototok.dev/",
-        label: "Try it",
-      },
-    ],
-  },
-  {
+  novtran: {
     title: "Novtran",
     description:
       "A local-first workspace for translating long-form fiction with AI. Users organize text into chunks, stream structured translations and contextual notes, review each result, and import or export projects. It supports OpenAI, Anthropic, and Google models while keeping projects and API keys in the browser.",
@@ -119,7 +89,52 @@ export const projectsData: ProjectData[] = [
       },
     ],
   },
-  {
+  "connections-info": {
+    title: "Connections Info",
+    description:
+      "An enhanced wrapper for NYT Connections with configurable research links for every word, historical puzzle navigation, guess history, and shareable results. A React client talks to a cache-aware Vercel Function that validates and normalizes puzzle data.",
+    tags: [
+      "typescript",
+      "react",
+      "vite",
+      "tailwind-css",
+      "shadcn-ui",
+      "vercel-functions",
+    ],
+    image: connectionsInfoImg,
+    displayFilename: "connections-info.ts",
+    githubUrl: "https://github.com/kototok903/connections-info",
+    links: [
+      {
+        href: "https://connections-info.kototok.dev/",
+        label: "Play",
+      },
+    ],
+  },
+  "sort-forge": {
+    title: "SortForge",
+    description:
+      "SortForge is an interactive sorting algorithm visualizer featuring 20 algorithms, fast forward and rewind, and sound synthesis. Rust engine in WebAssembly emits events, and the React frontend handles timing and animation. Live event generation is available to simulate large arrays.",
+    tags: [
+      "rust",
+      "webassembly",
+      "react",
+      "typescript",
+      "vite",
+      "tailwind-css",
+      "canvas",
+    ],
+    image: sortForgeImg,
+    displayFilename: "sortforge.rs",
+    githubUrl: "https://github.com/kototok903/sort-forge",
+    links: [
+      {
+        href: "https://sort-forge.kototok.dev/",
+        label: "Try it",
+      },
+    ],
+  },
+  novfmt: {
     title: "novfmt",
     description:
       "A lightweight Go tool for maintaining EPUB files. It can merge multiple volumes, inspect and modify metadata and navigation, and perform single or rules-based text rewrites with dry-run and non-destructive output options.",
@@ -127,7 +142,7 @@ export const projectsData: ProjectData[] = [
     displayFilename: "novfmt.go",
     githubUrl: "https://github.com/kototok903/novfmt",
   },
-  {
+  codegram: {
     title: "Codegram",
     description:
       "Codegram is an online tutoring platform that is capable of matching students in need of programming assistance with experts in the related field. They share a synchronized code editor with webcam, audio, and programming language support functionality to enhance the virtual tutoring experience.",
@@ -146,7 +161,7 @@ export const projectsData: ProjectData[] = [
     displayFilename: "codegram.js",
     githubUrl: "https://github.com/Bardemic/Codegram",
   },
-  {
+  closetics: {
     title: "Closetics",
     description:
       "Closetics is a unique Android app that blends clothes wearing statistics with social media. Designed for fashion enthusiasts, it helps you track your clothing habits, discover outfit trends, and share your style with a community of like-minded users.",
@@ -163,7 +178,7 @@ export const projectsData: ProjectData[] = [
     displayFilename: "closetics.java",
     githubUrl: "https://github.com/Niall-Sharma/Closetics",
   },
-  {
+  "simple-edit": {
     title: "Simple Edit",
     description:
       "Simple Edit is a fast, lightweight image editor. Made for Windows using C# and .NET Framework. It has a variety of available features like blur and sharpening, different filters and color modes, autocorrection, and pixel sorting.",
@@ -172,7 +187,7 @@ export const projectsData: ProjectData[] = [
     displayFilename: "simple-edit.cs",
     githubUrl: "https://github.com/kototok903/simple-edit",
   },
-  {
+  "real-sort": {
     title: "Real Sort",
     description:
       "Real Sort is a program for Sorting Algorithm Visualization written in Java. It features:<br>&ensp;• 12 sorting algorithms with different variations<br>&ensp;• Convenient playback controls<br>&ensp;• Multiple color themes",
@@ -181,7 +196,7 @@ export const projectsData: ProjectData[] = [
     displayFilename: "real-sort.java",
     githubUrl: "https://github.com/kototok903/real-sort",
   },
-  {
+  sokoban: {
     title: "Sokoban",
     description:
       "Sokoban is a challenging puzzle game where you need to push all the boxes to their designated spots. Made in Haskell using CodeWorld graphics library. Contains 7 levels with varying difficulty.",
@@ -196,4 +211,4 @@ export const projectsData: ProjectData[] = [
       },
     ],
   },
-];
+};

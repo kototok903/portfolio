@@ -12,15 +12,16 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Tags from "@/components/Tags.astro";
-import { projectsData } from "@/lib/projects";
+import { PROJECT_NAMES, projectsData, type ProjectName } from "@/lib/projects";
 
 interface Props {
-  count?: number;
+  projects?: ProjectName[];
   headingLevel?: 2 | 3;
 }
 
-const { count, headingLevel = 3 } = Astro.props;
-const projects = count ? projectsData.slice(0, count) : projectsData;
+const { projects: projectNames = PROJECT_NAMES, headingLevel = 3 } =
+  Astro.props;
+const projects = projectNames.map(projectName => projectsData[projectName]);
 const ProjectHeading = headingLevel === 2 ? "h2" : "h3";
 ---
 
@@ -90,10 +91,10 @@ const ProjectHeading = headingLevel === 2 ? "h2" : "h3";
 </div>
 
 {
-  count && projectsData.length > count && (
+  projectNames.length < PROJECT_NAMES.length && (
     <div class="mt-7 flex justify-center">
       <LinkButton href="/projects" variant="frame">
-        All projects ({projectsData.length})
+        All projects ({PROJECT_NAMES.length})
         <ArrowUpRightIcon aria-hidden />
       </LinkButton>
     </div>
