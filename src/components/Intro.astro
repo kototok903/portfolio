@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import { LinkButton } from "@/components/LinkButton";
 import GithubIcon from "@/components/icons/GithubIcon.astro";
 import LinkedinIcon from "@/components/icons/LinkedinIcon.astro";
+import { Button } from "@/components/ui/button";
 import { Card, CardBar } from "@/components/ui/card";
 import authorImage from "@/assets/images/author/stas_3to4.jpg";
 import { GITHUB_URL, LINKEDIN_URL } from "@/lib/constants";
@@ -49,13 +50,20 @@ import { GITHUB_URL, LINKEDIN_URL } from "@/lib/constants";
     </div>
     <Card
       className="mx-auto w-full max-w-50 gap-0 border-border-strong py-0 shadow-lg"
+      data-intro-image-card
     >
       <CardBar>
         <span>stas.jpg</span>
         <span class="flex gap-1.5">
           <span class="size-2 bg-border-strong"></span>
           <span class="size-2 bg-border-strong"></span>
-          <span class="size-2 bg-primary"></span>
+          <Button
+            type="button"
+            variant="windowControl"
+            size="windowControl"
+            aria-label="Hide portrait"
+            data-hide-intro-image
+          />
         </span>
       </CardBar>
       <Image
@@ -70,3 +78,17 @@ import { GITHUB_URL, LINKEDIN_URL } from "@/lib/constants";
     </Card>
   </div>
 </section>
+
+<script>
+  const hideImageButton = document.querySelector<HTMLButtonElement>(
+    "[data-hide-intro-image]",
+  );
+  const imageCard = document.querySelector<HTMLElement>(
+    "[data-intro-image-card]",
+  );
+
+  hideImageButton?.addEventListener("click", () => {
+    imageCard?.classList.add("invisible");
+    hideImageButton?.classList.add("transition-none");
+  });
+</script>

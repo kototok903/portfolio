@@ -118,8 +118,8 @@ export const projectsData: Record<ProjectName, ProjectData> = {
     tags: [
       "rust",
       "webassembly",
-      "react",
       "typescript",
+      "react",
       "vite",
       "tailwind-css",
       "canvas",
