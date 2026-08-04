@@ -7,7 +7,7 @@ import pdfEditorImg from "@/assets/images/projects/pdf-editor-screenshot-dark.pn
 import realSortImg from "@/assets/images/projects/real-sort-screenshot.png";
 import simpleEditImg from "@/assets/images/projects/simple-edit-screenshot.png";
 import sokobanImg from "@/assets/images/projects/sokoban-screenshot.png";
-import sortForgeImg from "@/assets/images/projects/sortforge-screenshot-flipped.png";
+import sortForgeImg from "@/assets/images/projects/sortforge-screenshot.png";
 import type { TagName } from "@/lib/tags";
 
 export const PROJECT_NAMES = [
