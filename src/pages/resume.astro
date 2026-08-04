@@ -12,7 +12,7 @@ const resumeDownloadUrl =
 
 <BaseLayout title="Resume | Stas' Portfolio">
   <section class="mx-auto max-w-3xl px-5 py-20 sm:px-10">
-    <SectionLabel label="Resume" class="mb-8" />
+    <SectionLabel label="Resume" level={1} class="mb-8" />
 
     <div class="mb-6 flex justify-center">
       <LinkButton
@@ -30,7 +30,7 @@ const resumeDownloadUrl =
       <iframe
         src={resumePreviewUrl}
         title="Resume PDF preview"
-        class="absolute left-0 top-0 h-full w-full"
+        class="absolute top-0 left-0 h-full w-full"
         loading="lazy"></iframe>
     </div>
   </section>

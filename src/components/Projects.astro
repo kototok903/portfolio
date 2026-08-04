@@ -2,47 +2,64 @@
 import { Image } from "astro:assets";
 import { ArrowUpRightIcon } from "@lucide/astro";
 import { LinkButton } from "@/components/LinkButton";
-import { Card, CardBar } from "@/components/ui/card";
+import {
+  Card,
+  CardBar,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import Tags from "@/components/Tags.astro";
 import { projectsData } from "@/lib/projects";
 
 interface Props {
   count?: number;
+  headingLevel?: 2 | 3;
 }
 
-const { count } = Astro.props;
+const { count, headingLevel = 3 } = Astro.props;
 const projects = count ? projectsData.slice(0, count) : projectsData;
+const ProjectHeading = headingLevel === 2 ? "h2" : "h3";
 ---
 
 <div class="grid gap-4 sm:grid-cols-2">
   {
     projects.map((project, i) => (
-      <Card className="group gap-0 overflow-hidden border-border py-0 transition-colors hover:border-primary">
-        <CardBar>
-          <span>{project.displayFilename}</span>
-          <span>P/{String(i + 1).padStart(2, "0")}</span>
-        </CardBar>
+      <article class="flex">
+        <Card variant="terminal" className="flex-1">
+          <CardBar>
+            <span>{project.displayFilename}</span>
+            <!-- TODO: maybe add project date here -->
+          </CardBar>
 
-        {project.image && (
-          <Image
-            src={project.image}
-            alt={`${project.title} screenshot`}
-            class="h-40 w-full border-b border-border object-cover object-top"
-          />
-        )}
+          {project.image && (
+            <Image
+              src={project.image}
+              alt={`${project.title} screenshot`}
+              class="h-40 w-full border-b border-border object-cover object-top"
+            />
+          )}
 
-        <div class="flex flex-1 flex-col p-6">
-          <h3 class="font-serif text-2xl italic tracking-tight">
-            {project.title}
-          </h3>
-          <p
-            class="mt-2 text-[15px] text-muted-foreground"
-            set:html={project.description}
-          />
+          <CardHeader className="pt-6">
+            <CardTitle>
+              <ProjectHeading class="font-serif text-2xl font-normal tracking-tight italic">
+                {project.title}
+              </ProjectHeading>
+            </CardTitle>
+            <CardDescription className="text-[15px]">
+              <p set:html={project.description} />
+            </CardDescription>
+          </CardHeader>
 
-          {project.tags && <Tags tags={project.tags} class="mt-4" />}
+          {project.tags && (
+            <CardContent className="pt-4">
+              <Tags tags={project.tags} />
+            </CardContent>
+          )}
 
-          <div class="mt-auto flex flex-wrap gap-x-5 gap-y-2 pt-5 font-mono text-[13px]">
+          <CardFooter className="mt-auto flex-wrap gap-x-5 gap-y-2 pb-6 pt-5 font-mono text-[13px]">
             {project.links?.map(link => (
               <a
                 href={link.href}
@@ -65,9 +82,9 @@ const projects = count ? projectsData.slice(0, count) : projectsData;
                 <ArrowUpRightIcon class="size-3.5" aria-hidden />
               </a>
             )}
-          </div>
-        </div>
-      </Card>
+          </CardFooter>
+        </Card>
+      </article>
     ))
   }
 </div>

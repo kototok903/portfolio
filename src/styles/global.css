@@ -5,6 +5,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Theme: Tangerine */
 :root {
   color-scheme: dark;
@@ -49,7 +51,8 @@
 
   --font-sans: "Space Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Newsreader Variable", ui-serif, Georgia, serif;
-  --font-mono: "Geist Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --font-mono:
+    "Geist Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 
   /* Sharp corners — the design is built on straight lines. */
   --radius: 0px;
@@ -161,7 +164,11 @@
       radial-gradient(circle at 0 0, var(--primary) 2.5px, transparent 3px),
       radial-gradient(circle at 100% 0, var(--primary) 2.5px, transparent 3px),
       radial-gradient(circle at 0 100%, var(--primary) 2.5px, transparent 3px),
-      radial-gradient(circle at 100% 100%, var(--primary) 2.5px, transparent 3px);
+      radial-gradient(
+        circle at 100% 100%,
+        var(--primary) 2.5px,
+        transparent 3px
+      );
   }
 
   /* Faint diagonal hatch, used behind the portrait/terminal card. */

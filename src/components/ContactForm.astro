@@ -1,18 +1,24 @@
 ---
 import { actions } from "astro:actions";
 import { Button } from "@/components/ui/button";
-import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
+import {
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { Spinner } from "@/components/ui/spinner";
 import { Textarea } from "@/components/ui/textarea";
 import { CONTACT_EMAIL } from "@/lib/constants";
 ---
 
 <div class="mx-auto max-w-xl text-center">
-  <h2 class="font-sans text-4xl font-bold tracking-tight sm:text-5xl">
-    Let&rsquo;s <span class="font-serif font-normal italic text-primary"
+  <h3 class="font-sans text-4xl font-bold tracking-tight sm:text-5xl">
+    Let&rsquo;s <span class="font-serif font-normal text-primary italic"
       >build</span
     > something.
-  </h2>
+  </h3>
   <p class="mt-4 text-muted-foreground">
     Open to internships, new-grad roles, and interesting problems. Use the form
     below, or email{" "}
@@ -37,7 +43,7 @@ import { CONTACT_EMAIL } from "@/lib/constants";
     </div>
 
     <FieldGroup className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-      <Field>
+      <Field data-contact-field="name">
         <FieldLabel htmlFor="name" className="sr-only">Name</FieldLabel>
         <Input
           id="name"
@@ -45,32 +51,47 @@ import { CONTACT_EMAIL } from "@/lib/constants";
           type="text"
           placeholder="Name"
           autoComplete="given-name"
+          aria-describedby="name-error"
+          data-contact-control
           minLength={2}
           required
         />
+        <FieldError id="name-error" data-contact-error hidden>
+          <span></span>
+        </FieldError>
       </Field>
 
-      <Field>
+      <Field data-contact-field="email">
         <FieldLabel htmlFor="email" className="sr-only">Email</FieldLabel>
         <Input
           id="email"
           name="email"
           type="email"
           autoComplete="email"
+          aria-describedby="email-error"
+          data-contact-control
           placeholder="Email"
           required
         />
+        <FieldError id="email-error" data-contact-error hidden>
+          <span></span>
+        </FieldError>
       </Field>
 
-      <Field className="sm:col-span-2">
+      <Field className="sm:col-span-2" data-contact-field="message">
         <FieldLabel htmlFor="message" className="sr-only">Message</FieldLabel>
         <Textarea
           id="message"
           name="message"
           rows={4}
+          aria-describedby="message-error"
+          data-contact-control
           placeholder="Message"
           required
         />
+        <FieldError id="message-error" data-contact-error hidden>
+          <span></span>
+        </FieldError>
       </Field>
     </FieldGroup>
 
@@ -81,7 +102,12 @@ import { CONTACT_EMAIL } from "@/lib/constants";
         className="w-full"
         data-contact-submit
       >
-        Send message
+        <Spinner
+          className="hidden"
+          data-icon="inline-start"
+          data-contact-spinner
+        />
+        <span data-contact-submit-label>Send message</span>
       </Button>
     </div>
 
@@ -89,57 +115,149 @@ import { CONTACT_EMAIL } from "@/lib/constants";
       class="mt-4 min-h-5 text-center text-sm text-muted-foreground"
       data-contact-status
       aria-live="polite"
+      role="status"
     >
     </p>
   </form>
 </div>
 
 <script>
-  // TODO: why is all of this in a script tag?
-  import { actions } from "astro:actions";
+  import { actions, isInputError } from "astro:actions";
+
+  type ContactFieldName = "name" | "email" | "message";
+
+  const fieldNames: ContactFieldName[] = ["name", "email", "message"];
 
   const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
   const submit = document.querySelector<HTMLButtonElement>(
     "[data-contact-submit]",
   );
   const status = document.querySelector<HTMLElement>("[data-contact-status]");
+  const spinner = document.querySelector<SVGElement>("[data-contact-spinner]");
+  const submitLabel = document.querySelector<HTMLElement>(
+    "[data-contact-submit-label]",
+  );
+
+  function getFieldElements(name: ContactFieldName) {
+    const field = document.querySelector<HTMLElement>(
+      `[data-contact-field="${name}"]`,
+    );
+
+    return {
+      field,
+      control: field?.querySelector<HTMLInputElement | HTMLTextAreaElement>(
+        "[data-contact-control]",
+      ),
+      error: field?.querySelector<HTMLElement>("[data-contact-error]"),
+    };
+  }
+
+  function clearFieldError(name: ContactFieldName) {
+    const { field, control, error } = getFieldElements(name);
+
+    field?.removeAttribute("data-invalid");
+    control?.removeAttribute("aria-invalid");
+
+    if (error) {
+      error.textContent = "";
+      error.hidden = true;
+    }
+  }
+
+  function clearFieldErrors() {
+    fieldNames.forEach(clearFieldError);
+  }
+
+  function setFieldError(name: ContactFieldName, message: string) {
+    const { field, control, error } = getFieldElements(name);
+
+    field?.setAttribute("data-invalid", "true");
+    control?.setAttribute("aria-invalid", "true");
+
+    if (error) {
+      error.textContent = message;
+      error.hidden = false;
+    }
+  }
+
+  function setStatus(message: string, state: "idle" | "error" = "idle") {
+    if (!status) return;
+
+    const isError = state === "error";
+    status.textContent = message;
+    status.classList.toggle("text-destructive", isError);
+    status.classList.toggle("text-muted-foreground", !isError);
+    status.setAttribute("role", isError ? "alert" : "status");
+    status.setAttribute("aria-live", isError ? "assertive" : "polite");
+  }
+
+  fieldNames.forEach(name => {
+    getFieldElements(name).control?.addEventListener("input", () => {
+      clearFieldError(name);
+    });
+  });
 
   form?.addEventListener("submit", async event => {
     event.preventDefault();
 
     if (!form.reportValidity()) return;
 
-    const originalLabel = submit?.textContent ?? "Submit";
+    const originalLabel = submitLabel?.textContent ?? "Send message";
+
+    clearFieldErrors();
+    setStatus("");
+    form.setAttribute("aria-busy", "true");
+
     if (submit) {
       submit.disabled = true;
-      submit.textContent = "Submitting...";
-    }
-    if (status) {
-      status.textContent = "";
-      status.className =
-        "mt-4 min-h-5 text-center text-sm text-muted-foreground";
     }
 
-    const { error } = await actions.sendContact(new FormData(form));
+    spinner?.classList.remove("hidden");
+    if (submitLabel) {
+      submitLabel.textContent = "Sending message";
+    }
 
-    if (error) {
-      if (status) {
-        status.textContent =
-          error.message || "An error occurred. Please try again.";
-        status.className = "mt-4 min-h-5 text-center text-sm text-destructive";
+    try {
+      const { error } = await actions.sendContact(new FormData(form));
+
+      if (error) {
+        let hasFieldErrors = false;
+
+        if (isInputError(error)) {
+          fieldNames.forEach(name => {
+            const message = error.fields[name]?.[0];
+
+            if (message) {
+              hasFieldErrors = true;
+              setFieldError(name, message);
+            }
+          });
+        }
+
+        setStatus(
+          hasFieldErrors
+            ? "Please check the highlighted fields."
+            : error.message || "An error occurred. Please try again.",
+          "error",
+        );
+        return;
       }
-    } else {
+
       form.reset();
-      if (status) {
-        status.textContent = "Message sent successfully.";
-        status.className =
-          "mt-4 min-h-5 text-center text-sm text-muted-foreground";
-      }
-    }
+      setStatus("Message sent successfully.");
+    } catch {
+      setStatus("Unable to send your message. Please try again.", "error");
+    } finally {
+      form.removeAttribute("aria-busy");
 
-    if (submit) {
-      submit.disabled = false;
-      submit.textContent = originalLabel;
+      if (submit) {
+        submit.disabled = false;
+      }
+
+      spinner?.classList.add("hidden");
+      if (submitLabel) {
+        submitLabel.textContent = originalLabel;
+      }
     }
   });
 </script>

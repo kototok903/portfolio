@@ -77,7 +77,7 @@ export default function Header({ pathname }: HeaderProps) {
     isHome ? activeSection === id : currentByPath.has(id);
 
   return (
-    <header className="border-border bg-background/80 sticky top-0 z-40 hidden border-b backdrop-blur-md sm:block">
+    <header className="sticky top-0 z-40 hidden border-b border-border bg-background/80 backdrop-blur-md sm:block">
       <nav
         className="mx-auto flex max-w-5xl items-center justify-between px-5 py-2 sm:px-10"
         aria-label="Main navigation"
@@ -103,7 +103,7 @@ export default function Header({ pathname }: HeaderProps) {
               <a
                 href={sectionHref(item.id, isHome)}
                 className={cn(
-                  "text-muted-foreground hover:text-foreground transition-colors",
+                  "text-muted-foreground transition-colors hover:text-foreground",
                   isActive(item.id) && "text-foreground",
                 )}
               >

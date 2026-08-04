@@ -1,5 +1,6 @@
 ---
 import Tags from "@/components/Tags.astro";
+import { Separator } from "@/components/ui/separator";
 import type { TagName } from "@/lib/tags";
 
 const groups: { name: string; tags: TagName[] }[] = [
@@ -26,9 +27,9 @@ const groups: { name: string; tags: TagName[] }[] = [
   {
     groups.map(group => (
       <div>
-        <h3 class="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.12em] text-primary">
+        <h3 class="flex items-center gap-3 font-mono text-xs tracking-[0.12em] text-primary uppercase">
           {group.name}
-          <span class="h-px flex-1 bg-border" />
+          <Separator className="flex-1" />
         </h3>
         <Tags tags={group.tags} variant="secondary" class="mt-3" />
       </div>

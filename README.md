@@ -1,11 +1,12 @@
 # Portfolio
 
-Personal programming portfolio built with bun, Astro, Tailwind v4, and shadcn/ui primitives.
+Personal programming portfolio built with bun, Astro, Tailwind v4, and shadcn/ui
+primitives.
 
 ## Commands
 
 ```bash
-bun install
+bun i
 bun run dev
 bun run check
 bun run build

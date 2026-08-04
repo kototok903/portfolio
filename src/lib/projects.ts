@@ -39,7 +39,7 @@ export const projectsData: ProjectData[] = [
     githubUrl: "https://github.com/kototok903/sort-forge",
     links: [
       {
-        href: "https://sort-forge.vercel.app",
+        href: "https://sort-forge.kototok.dev/",
         label: "Try it",
       },
     ],

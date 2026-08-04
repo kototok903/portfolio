@@ -2,7 +2,7 @@ import { ActionError, defineAction } from "astro:actions";
 import { z } from "astro/zod";
 import { Resend } from "resend";
 
-const CONTACT_EMAIL = "kototok903@gmail.com";
+import { CONTACT_EMAIL } from "@/lib/constants";
 
 const contactSchema = z.object({
   name: z
@@ -37,7 +37,7 @@ export const server = {
 
       const { data, error } = await resend.emails.send({
         from: "onboarding@resend.dev",
-        to: CONTACT_EMAIL,
+        to: import.meta.env.CONTACT_EMAIL ?? CONTACT_EMAIL,
         subject: "Contact form submission",
         text: [
           "A contact form submission from Stas' Portfolio website.",
