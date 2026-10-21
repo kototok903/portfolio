@@ -1,4 +1,5 @@
 import type { ImageMetadata } from "astro";
+import bdStyleMakerImg from "@/assets/images/projects/bdsm-screenshot.png";
 import codegramImg from "@/assets/images/projects/codegram-screenshot.png";
 import closeticsImg from "@/assets/images/projects/closetics-screenshot-combo2.png";
 import connectionsInfoImg from "@/assets/images/projects/connections-info-screenshot.png";
@@ -15,6 +16,7 @@ export const PROJECT_NAMES = [
   "novtran",
   "connections-info",
   "sort-forge",
+  "bd-style-maker",
   "novfmt",
   "codegram",
   "closetics",
@@ -39,6 +41,28 @@ export type ProjectData = {
 };
 
 export const projectsData: Record<ProjectName, ProjectData> = {
+  "bd-style-maker": {
+    title: "BD Style Maker",
+    description:
+      "A browser-based workspace for creating and editing BetterDiscord themes. Provides visual controls, a CSS code editor, a live Discord preview, element inspection, undo/redo, and theme export that preserves the original CSS formatting and comments.",
+    tags: [
+      "typescript",
+      "react",
+      "vite",
+      "tailwind-css",
+      "shadcn-ui",
+      "indexeddb",
+    ],
+    image: bdStyleMakerImg,
+    displayFilename: "bd-style-maker.ts",
+    githubUrl: "https://github.com/kototok903/bd-style-maker",
+    links: [
+      {
+        href: "https://bdsm.kototok.dev/",
+        label: "Try it",
+      },
+    ],
+  },
   "pdf-editor": {
     title: "PDF Editor",
     description:
@@ -114,7 +138,7 @@ export const projectsData: Record<ProjectName, ProjectData> = {
   "sort-forge": {
     title: "SortForge",
     description:
-      "SortForge is an interactive sorting algorithm visualizer featuring 20 algorithms, fast forward and rewind, and sound synthesis. Rust engine in WebAssembly emits events, and the React frontend handles timing and animation. Live event generation is available to simulate large arrays.",
+      "An interactive sorting algorithm visualizer featuring 20 algorithms, fast forward and rewind, and sound synthesis. Rust engine in WebAssembly emits events, and the React frontend handles timing and animation. Live event generation is available to simulate large arrays.",
     tags: [
       "rust",
       "webassembly",
