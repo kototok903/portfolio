@@ -1,24 +1,24 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import SectionLabel from "@/components/SectionLabel.astro";
 import { LinkButton } from "@/components/LinkButton";
 import { DownloadIcon } from "@lucide/astro";
-
-const resumePreviewUrl =
-  "https://drive.google.com/file/d/1vj7qhnkfDG1wYHps0wiFOLFGRzq1GwKs/preview";
-const resumeDownloadUrl =
-  "https://drive.google.com/uc?export=download&id=1vj7qhnkfDG1wYHps0wiFOLFGRzq1GwKs";
+import resumePreview from "@/assets/images/resume-preview.jpg";
+import { PERSON } from "@/lib/constants";
 ---
 
-<BaseLayout title="Resume | Stas' Portfolio">
+<BaseLayout
+  title={`Resume | ${PERSON.name}`}
+  description={`Resume of ${PERSON.name}: computer-science student at Iowa State and former software engineer at Paradigm AI.`}
+>
   <section class="mx-auto max-w-3xl px-5 py-20 sm:px-10">
     <SectionLabel label="Resume" level={1} class="mb-8" />
 
     <div class="mb-6 flex justify-center">
       <LinkButton
-        href={resumeDownloadUrl}
-        target="_blank"
-        rel="noopener noreferrer"
+        href={PERSON.resume}
+        download={`${PERSON.name.replaceAll(" ", "_")}_Resume.pdf`}
         variant="handle"
       >
         <DownloadIcon aria-hidden />
@@ -26,12 +26,25 @@ const resumeDownloadUrl =
       </LinkButton>
     </div>
 
-    <div class="relative w-full border border-border-strong pt-[141.42%]">
-      <iframe
-        src={resumePreviewUrl}
-        title="Resume PDF preview"
-        class="absolute top-0 left-0 h-full w-full"
-        loading="lazy"></iframe>
-    </div>
+    <!--
+      The PDF is served from this site, so search engines index it under this domain.
+      Browsers that can't show a PDF inline (most phones) get the page-1 picture instead.
+    -->
+    <object
+      data={`${PERSON.resume}#view=FitH`}
+      type="application/pdf"
+      aria-label="Resume PDF"
+      class="block aspect-[1/1.2941] w-full border border-border-strong"
+    >
+      <a href={PERSON.resume} target="_blank" rel="noopener">
+        <Image
+          src={resumePreview}
+          alt={`${PERSON.name}'s resume, page 1`}
+          widths={[400, 800, 1400]}
+          sizes="(min-width: 48rem) 42rem, 100vw"
+          class="w-full"
+        />
+      </a>
+    </object>
   </section>
 </BaseLayout>

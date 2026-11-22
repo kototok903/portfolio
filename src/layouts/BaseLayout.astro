@@ -1,18 +1,60 @@
 ---
+import { getImage } from "astro:assets";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer.astro";
 import CropMarks from "@/components/CropMarks.astro";
+import authorImage from "@/assets/images/author/stas_square.jpg";
+import { PERSON } from "@/lib/constants";
 import "@/styles/global.css";
 
 interface Props {
   title?: string;
   description?: string;
+  /** Keep this page out of search results (the 404 page). */
+  noindex?: boolean;
 }
 
 const {
-  title = "Stas' Portfolio",
-  description = "Stas Bronevskiy's personal computer science portfolio",
+  title = `${PERSON.name} — ${PERSON.role}`,
+  description = PERSON.description,
+  noindex = false,
 } = Astro.props;
+
+const site = Astro.site!;
+const canonical = new URL(Astro.url.pathname, site);
+/* Link preview picture (LinkedIn, Slack, X, iMessage…), 1200×630. */
+const ogImage = new URL("/og-image.jpg", site);
+const photo = await getImage({ src: authorImage, width: 512, format: "jpeg" });
+
+/* Structured data (JSON-LD): tells search engines whose site this is and
+   which GitHub and LinkedIn profiles belong to the same person. */
+const graph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${site.href}#website`,
+      url: site.href,
+      name: PERSON.name,
+      inLanguage: "en",
+      publisher: { "@id": `${site.href}#person` },
+    },
+    {
+      "@type": "Person",
+      "@id": `${site.href}#person`,
+      name: PERSON.name,
+      givenName: PERSON.givenName,
+      familyName: PERSON.familyName,
+      jobTitle: PERSON.role,
+      description: PERSON.description,
+      url: site.href,
+      image: new URL(photo.src, site).href,
+      sameAs: PERSON.socials,
+    },
+  ],
+};
+/* Keeps "</script>" in any text from closing the tag early. */
+const jsonLd = JSON.stringify(graph).replaceAll("<", "\\u003c");
 ---
 
 <!doctype html>
@@ -20,10 +62,34 @@ const {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#1c2130" />
-    <link rel="icon" href="/favicon.ico" />
-    <title>{title}</title>
+    {noindex && <meta name="robots" content="noindex" />}
+    {!noindex && <link rel="canonical" href={canonical} />}
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={PERSON.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content={`${PERSON.name}, ${PERSON.role.toLowerCase()}`}
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <script type="application/ld+json" set:html={jsonLd} />
   </head>
   <body class="flex min-h-screen flex-col font-sans antialiased">
     <CropMarks />

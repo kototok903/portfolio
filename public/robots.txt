@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.stasbronevskiy.com/sitemap-index.xml
