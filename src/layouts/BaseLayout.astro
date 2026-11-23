@@ -15,7 +15,7 @@ interface Props {
 }
 
 const {
-  title = `${PERSON.name} — ${PERSON.role}`,
+  title = PERSON.name,
   description = PERSON.description,
   noindex = false,
 } = Astro.props;
